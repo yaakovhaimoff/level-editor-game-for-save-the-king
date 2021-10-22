@@ -4,6 +4,8 @@
         "iostream": "cpp",
         "__split_buffer": "cpp",
         "memory": "cpp",
-        "vector": "cpp"
-    }
+        "vector": "cpp",
+        "cmath": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "Enabled"
 }

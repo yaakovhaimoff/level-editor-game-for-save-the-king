@@ -7,7 +7,7 @@
 class Rectangle
 {
 public:
-    Rectangle(const Vertex &bottomLeft, const Vertex &topRight); // 1
+    Rectangle(const Vertex &bottomLeft, const Vertex &topRight);
     Rectangle(const Vertex vertices[2]);
     Rectangle(const Vertex& start, double width, double height);
     Rectangle(double x0, double y0, double x1, double y1);
@@ -26,5 +26,5 @@ public:
 
 private:
     Vertex m_bottomLeft;
-    Vertex m_rightTop;
+    Vertex m_topRight;
 };

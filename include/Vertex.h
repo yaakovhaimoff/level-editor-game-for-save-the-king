@@ -13,6 +13,7 @@ struct Vertex
     bool isHigherThan(const Vertex& other) const;
     bool isToTheRightOf(const Vertex& other) const;
     bool isValid() const;
+    bool isQuad(const Vertex v1, const Vertex v2) const;    
 };
 
 std::istream& operator>>(std::istream& istr, Vertex& v);
