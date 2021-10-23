@@ -40,10 +40,10 @@ Vertex Triangle::getVertex(int index) const
 // _______________________________
 double Triangle::getLength() const
 {
-    return abs(m_triangleVertex[1].getCol() - m_triangleVertex[0].getCol());
+    return abs(m_triangleVertex[1].m_col - m_triangleVertex[0].m_col);
 }
 // _______________________________
 double Triangle::getHeight() const
 {
-    return abs(m_triangleVertex[2].getRow() - m_triangleVertex[1].getRow());
+    return abs(m_triangleVertex[2].m_row - m_triangleVertex[1].m_row);
 }

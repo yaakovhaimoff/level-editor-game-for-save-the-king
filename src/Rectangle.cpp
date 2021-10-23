@@ -27,10 +27,10 @@ Rectangle::Rectangle(const Vertex vertices[2]) : Rectangle(vertices[0], vertices
 
 // ____________________________________________________________________
 Rectangle::Rectangle(const Vertex &start, double width, double height)
-    : Rectangle(start, Vertex((width + start.getCol()), (height + start.getRow()))) {}
+    : Rectangle(start, Vertex((width + start.m_col), (height + start.m_row))) {}
 // _____________________________________________________________
 Rectangle::Rectangle(double x0, double y0, double x1, double y1)
-    : Rectangle(Vertex(x0, y0), Vertex(x0, y0)) {}
+    : Rectangle(Vertex(x0, y0), Vertex(x1, y1)) {}
 
 // ____________________________________
 Vertex Rectangle::getBottomLeft() const
@@ -50,5 +50,5 @@ double Rectangle::getHeight() const
 // _______________________________
 double Rectangle::getWidth() const
 {
-    return abs(m_topRight.getCol() + m_bottomLeft.getCol());
+    return abs(m_topRight.m_col + m_bottomLeft.m_col);
 }
