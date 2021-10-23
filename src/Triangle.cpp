@@ -25,13 +25,8 @@ Triangle::Triangle(const Vertex vertcies[3])
 }
 // ________________________________________________
 Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
-    : Rectangle(v0, v1, )
-{
-    m_triangleVertex[2].getCol() = abs(v0.getCol() - v1.getCol());
-    v0.getCol() > v1.getCol() ? m_triangleVertex[2].getCol() += v1.getCol()
-                              : m_triangleVertex[2].getCol() += v0.getCol();
-    m_triangleVertex[2].getRow() = m_triangleVertex[2].getCol() + height;
-}
+    : Rectangle(v0, v1, ) // need to claculate
+{}
 // _________________________________________
 Vertex Triangle::getVertex(int index) const
 {
