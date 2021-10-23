@@ -14,7 +14,7 @@ Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
    if (m_bottomLeft.isHigherThan(m_topRight) ||
         m_bottomLeft.isToTheRightOf(m_topRight) ||
         !m_bottomLeft.isValid() || !m_topRight.isValid()||
-        (abs(m_bottomLeft.m_row - m_topRight.m_row) >= 0.5))
+        (abs(m_bottomLeft.getRow() - m_topRight.getRow()) >= 0.5))
     {
         m_bottomLeft = Vertex(20, 10);
         m_topRight = Vertex(30, 20);
@@ -23,8 +23,8 @@ Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
 
 Square::Square(const Vertex &start, double length)
 {
-    m_topRight.m_col = length + m_bottomLeft.m_row;
-    m_topRight.m_row = length + m_bottomLeft.m_col;
+    m_topRight.getCol() = length + m_bottomLeft.getRow();
+    m_topRight.getRow() = length + m_bottomLeft.getCol();
     Rectangle(start, m_topRight);
 }
 

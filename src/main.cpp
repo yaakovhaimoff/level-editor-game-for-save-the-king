@@ -12,10 +12,10 @@
 #define SQUARE              0
 #define HOURGLASS           0
 
-#if RECTANGLE
+
 #include "Rectangle.h"
 void printInfo(const Rectangle&);
-#endif
+
 
 #if TRIANGLE
 #include "Triangle.h"

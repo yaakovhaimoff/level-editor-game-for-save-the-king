@@ -11,28 +11,27 @@
 // ____________________________________________________________________
 Rectangle::Rectangle(const Vertex &bottomLeft, const Vertex &topRight)
 {
-    if (m_bottomLeft.isQuad(m_bottomLeft, m_topRight))
+    if (bottomLeft.isQuad(topRight))
     {
         m_bottomLeft = Vertex(20, 10);
         m_topRight = Vertex(30, 20);
     }
+    else
+    {
+        m_bottomLeft = bottomLeft;
+        m_topRight = topRight;
+    }
 }
 // ____________________________________________
-Rectangle::Rectangle(const Vertex vertices[2])
-    :Rectangle(vertices[0], vertices[1])
-{}
+Rectangle::Rectangle(const Vertex vertices[2]) : Rectangle(vertices[0], vertices[1]) {}
+
 // ____________________________________________________________________
 Rectangle::Rectangle(const Vertex &start, double width, double height)
-{
-    m_topRight.m_col = width + m_bottomLeft.m_row;
-    m_topRight.m_row = height + m_bottomLeft.m_col;
-    Rectangle(start, m_topRight);
-}
+    : Rectangle(start, Vertex((width + start.getCol()), (height + start.getRow()))) {}
 // _____________________________________________________________
 Rectangle::Rectangle(double x0, double y0, double x1, double y1)
-{
-    Rectangle(Vertex(x0, y0), Vertex(x1, y1));
-}
+    : Rectangle(Vertex(x0, y0), Vertex(x0, y0)) {}
+
 // ____________________________________
 Vertex Rectangle::getBottomLeft() const
 {
@@ -51,5 +50,5 @@ double Rectangle::getHeight() const
 // _______________________________
 double Rectangle::getWidth() const
 {
-    return abs(m_topRight.m_col + m_bottomLeft.m_col);
+    return abs(m_topRight.getCol() + m_bottomLeft.getCol());
 }
