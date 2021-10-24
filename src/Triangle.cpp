@@ -47,7 +47,7 @@ double Triangle::getHeight() const
 // _____________________________________
 void Triangle::draw(Board &board) const
 {
-    board.drawLine(m_triangleVertex[0],m_triangleVertex[1]);
+    board.drawLine(m_triangleVertex[0], m_triangleVertex[1]);
 }
 
 // _____________________________________________
@@ -57,14 +57,21 @@ Rectangle Triangle::getBoundingRectangle() const
 // ______________________________
 double Triangle::getArea() const
 {
+    return (abs(m_triangleVertex[0].m_col - m_triangleVertex[1].m_col) *
+            abs(m_triangleVertex[2].m_row - m_triangleVertex[1].m_row)) /
+           2;
 }
 // __________________________________
 double Triangle::getPerimeter() const
 {
+    return 3 *
+           abs(m_triangleVertex[0].m_col - m_triangleVertex[1].m_col);
 }
 // _______________________________
 Vertex Triangle::getCenter() const
 {
+    return Vertex((abs(m_triangleVertex[0].m_col + m_triangleVertex[1].m_col)) / 2,
+                  (abs(m_triangleVertex[0].m_row + m_triangleVertex[1].m_row)) / 2);
 }
 // ________________________________
 bool Triangle::scale(double factor)
