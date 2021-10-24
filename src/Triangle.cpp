@@ -18,8 +18,8 @@ Triangle::Triangle(const Vertex vertcies[3])
     }
     else
     {
-        m_triangleVertex[0] = Vertex(20, 20),
-        m_triangleVertex[1] = Vertex(30, 20),
+        m_triangleVertex[0] = Vertex(20, 20);
+        m_triangleVertex[1] = Vertex(30, 20);
         m_triangleVertex[2] = Vertex(25, 20 + sqrt(75));
     }
 }

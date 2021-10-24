@@ -1,3 +1,5 @@
+#pragma once
+
 #include "Square.h"
 #include "Rectangle.h"
 #include "Vertex.h"
@@ -5,8 +7,6 @@
 
 #include <iostream>
 #include <cmath>
-
-#pragma once
 #include <iosfwd>
 
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
