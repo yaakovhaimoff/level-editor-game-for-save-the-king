@@ -4,6 +4,7 @@
 #include "Rectangle.h"
 #include "Vertex.h"
 #include "Board.h"
+#include "Utilities.h"
 
 #include <iostream>
 #include <cmath>
@@ -12,10 +13,17 @@
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
 {
     if (bottomLeft.isQuad(topRight) ||
-        (abs(m_bottomLeft.m_row - m_topRight.m_row) >= 0.5))
+        (abs(bottomLeft.m_col - topRight.m_col) -
+             abs(bottomLeft.m_row - topRight.m_row) >
+         0.5))
     {
         m_bottomLeft = Vertex(20, 10);
         m_topRight = Vertex(30, 20);
+    }
+    else
+    {
+        m_bottomLeft = bottomLeft;
+        m_topRight = topRight;
     }
 }
 

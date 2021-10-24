@@ -52,3 +52,36 @@ double Rectangle::getWidth() const
 {
     return abs(m_topRight.m_col + m_bottomLeft.m_col);
 }
+// _____________________________________
+void Rectangle::draw(Board &board) const
+{
+    board.drawLine(m_bottomLeft, m_topRight);
+}
+
+// _____________________________________________
+Rectangle Rectangle::getBoundingRectangle() const
+{
+}
+
+// ______________________________
+double Rectangle::getArea() const
+{
+    return abs(m_bottomLeft.m_col - m_topRight.m_col) *
+           abs(m_bottomLeft.m_row - m_topRight.m_row);
+}
+double Rectangle::getPerimeter() const
+{
+    return (2 * abs(m_bottomLeft.m_col - m_topRight.m_col)) +
+           (2 * abs(m_bottomLeft.m_row - m_topRight.m_row));
+}
+
+// ________________________________
+Vertex Rectangle::getCenter() const
+{
+    return Vertex(abs(m_bottomLeft.m_col + m_topRight.m_col) / 2,
+                  abs(m_bottomLeft.m_row + m_topRight.m_row) / 2);
+}
+// _________________________________
+bool Rectangle::scale(double factor)
+{
+}
