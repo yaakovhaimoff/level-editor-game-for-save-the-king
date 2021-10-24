@@ -61,8 +61,6 @@ double Triangle::getHeight() const
 {
     return abs(m_triangleVertex[2].m_row - m_triangleVertex[1].m_row);
 }
-
-// not good, need to work on it more.
 // _____________________________________
 void Triangle::draw(Board &board) const
 {
@@ -74,6 +72,7 @@ void Triangle::draw(Board &board) const
 // _____________________________________________
 Rectangle Triangle::getBoundingRectangle() const
 {
+    return Rectangle(m_triangleVertex[0], Vertex(m_triangleVertex[1].m_col, m_triangleVertex[2].m_row));
 }
 // ______________________________
 double Triangle::getArea() const
@@ -101,4 +100,19 @@ Vertex Triangle::getCenter() const
 // ________________________________
 bool Triangle::scale(double factor)
 {
+    Vertex newV0, newV1, newV2, center = getCenter();
+    newV0 = Vertex((center.m_col - m_triangleVertex[0].m_col) * factor,
+                   (center.m_row - m_triangleVertex[0].m_row) * factor);
+    newV1 = Vertex((center.m_col - m_triangleVertex[1].m_col) * factor,
+                   (center.m_row - m_triangleVertex[1].m_row) * factor);
+    newV2 = Vertex((center.m_col - m_triangleVertex[2].m_col) * factor,
+                   (center.m_row - m_triangleVertex[2].m_row) * factor);
+    if (factor < 0 || newV0.isTriangle(newV1, newV2))
+    {
+        return false;
+    }
+    m_triangleVertex[0] = newV0;
+    m_triangleVertex[1] = newV1;
+    m_triangleVertex[2] = newV2;
+    return true;
 }

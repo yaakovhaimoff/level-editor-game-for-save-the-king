@@ -34,13 +34,6 @@ bool Vertex::isTriangle(const Vertex v1, const Vertex v2) const
            doubleEqual(this->m_row, v1.m_row) &&
            doubleEqual(this->m_row, v2.m_row);
 }
-// ______________________________________________________
-void Vertex::setQuad(Vertex &bottomLeft, Vertex &topRight,
-                     const Vertex v0, const Vertex v1)
-{
-    bottomLeft = Vertex(v0.m_col, v0.m_row);
-    topRight = Vertex(v1.m_col, v1.m_row);
-}
 // ____________________________________________________
 std::istream &operator>>(std::istream &istr, Vertex &v)
 {

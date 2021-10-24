@@ -11,12 +11,6 @@ struct Vertex
     Vertex() = default;
     Vertex(double col, double row) : m_col(col), m_row(row) {}
 
-    // Getters & Setters
-    void setCol(double col);
-    void setRow(double row);
-    void setQuad(Vertex &bottomLeft, Vertex &topRight,
-                 const Vertex v0, const Vertex v2);
-
     // Services
     bool isHigherThan(const Vertex &other) const;
     bool isToTheRightOf(const Vertex &other) const;
