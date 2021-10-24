@@ -11,7 +11,6 @@ public:
     Rectangle(const Vertex vertices[2]);
     Rectangle(const Vertex& start, double width, double height);
     Rectangle(double x0, double y0, double x1, double y1);
-    ~Rectangle();
 
     Vertex getBottomLeft() const; 
     Vertex getTopRight() const;   
