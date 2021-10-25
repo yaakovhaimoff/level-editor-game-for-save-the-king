@@ -11,7 +11,7 @@ public:
     ~Square();
     Vertex getBottomLeft(const double leftBottomVertex);
     Vertex getTopRight(const double rightTopVertex);
-    Vertex getTopLength(const double topLength);
+    double getLength(const double topLength);
 
     void draw(Board& board) const;
     Rectangle getBoundingRectangle()const;

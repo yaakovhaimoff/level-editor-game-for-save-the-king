@@ -23,5 +23,6 @@ public:
     bool scale(double factor);
 
 private:
-    Vertex
+    Triangle m_topTriangle;
+    Triangle m_bottomTriangle;
 };

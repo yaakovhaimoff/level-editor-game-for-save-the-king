@@ -55,12 +55,16 @@ double Rectangle::getWidth() const
 // _____________________________________
 void Rectangle::draw(Board &board) const
 {
-    board.drawLine(this->m_bottomLeft, Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row));
-    board.drawLine(Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row), this->m_topRight);
-    board.drawLine(this->m_topRight, Vertex(this->m_bottomLeft.m_col, this->m_topRight.m_row));
-    board.drawLine(Vertex(this->m_bottomLeft.m_col, this->m_topRight.m_row), this->m_bottomLeft);
+    // board.drawLine(this->m_bottomLeft,
+    //                Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row));
+    // board.drawLine(Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row),
+    //                this->m_topRight);
+    // board.drawLine(this->m_topRight, Vertex(this->m_bottomLeft.m_col,
+    //                                         this->m_topRight.m_row));
+    // board.drawLine(Vertex(this->m_bottomLeft.m_col, this->m_topRight.m_row),
+    //                this->m_bottomLeft);
+    m_bottomLeft.drawQuad(board, m_topRight);
 }
-
 // _____________________________________________
 Rectangle Rectangle::getBoundingRectangle() const
 {
@@ -72,12 +76,12 @@ double Rectangle::getArea() const
     return abs(this->m_bottomLeft.m_col - this->m_topRight.m_col) *
            abs(this->m_bottomLeft.m_row - this->m_topRight.m_row);
 }
+// ___________________________________
 double Rectangle::getPerimeter() const
 {
     return (2 * abs(this->m_bottomLeft.m_col - this->m_topRight.m_col)) +
            (2 * abs(this->m_bottomLeft.m_row - this->m_topRight.m_row));
 }
-
 // ________________________________
 Vertex Rectangle::getCenter() const
 {
@@ -90,8 +94,8 @@ bool Rectangle::scale(double factor)
     Vertex newBottom, newTop, center = getCenter();
     newBottom = Vertex((center.m_col - m_bottomLeft.m_col) * factor,
                        (center.m_row - m_bottomLeft.m_row) * factor);
-    newTop = Vertex((center.m_col - m_topRight.m_col) * factor,
-                    (center.m_row - m_topRight.m_row) * factor);
+    newTop = Vertex((center.m_col - newBottom.m_col) * factor,
+                    (center.m_row - newBottom.m_row) * factor);
     // newBottom.m_col = (center.m_col - m_bottomLeft.m_col) * factor;
     // newBottom.m_row = (center.m_row - m_bottomLeft.m_row) * factor;
     // newTop.m_col = (center.m_col - m_topRight.m_col) * factor;

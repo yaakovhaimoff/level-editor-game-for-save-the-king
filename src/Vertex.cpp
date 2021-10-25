@@ -1,6 +1,7 @@
 #include "Vertex.h"
 #include "macros.h"
 #include "Utilities.h"
+#include "Board.h"
 
 #include <iostream>
 
@@ -33,6 +34,15 @@ bool Vertex::isTriangle(const Vertex v1, const Vertex v2) const
            v2.isValid() &&
            doubleEqual(this->m_row, v1.m_row) &&
            doubleEqual(this->m_row, v2.m_row);
+}
+// ____________________________________________________
+void Vertex::drawQuad(Board &board, const Vertex v1) const
+{
+    board.drawLine(Vertex(this->m_col, this->m_row), Vertex(v1.m_col, this->m_row));
+    board.drawLine(Vertex(v1.m_col, this->m_row), v1);
+    board.drawLine(v1, Vertex(this->m_col, v1.m_row));
+    board.drawLine(Vertex(v1.m_col, this->m_row),
+                   Vertex(this->m_col, this->m_row));
 }
 // ____________________________________________________
 std::istream &operator>>(std::istream &istr, Vertex &v)
