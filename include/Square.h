@@ -6,6 +6,7 @@
 class Square
 {
 public:
+    Square()=default;
     Square(const Vertex &bottomLeft, const Vertex &topRight);
     Square(const Vertex &start, double length);
 
