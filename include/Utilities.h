@@ -1,4 +1,4 @@
-##pragma once
+#pragma once
 #include "Vertex.h"
 
 bool doubleEqual(double a, double b);

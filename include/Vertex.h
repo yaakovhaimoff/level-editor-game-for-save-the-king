@@ -2,6 +2,8 @@
 
 #include <iosfwd>
 
+class board;
+
 struct Vertex
 {
     double m_col = 0; // x

@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+
+
 // _________________________________________________
 bool Vertex::isHigherThan(const Vertex &other) const
 {
@@ -29,9 +31,7 @@ bool Vertex::isQuad(const Vertex v2) const
 bool Vertex::isTriangle(const Vertex v1, const Vertex v2) const
 {
     return this->isValid() && v1.isValid() &&
-           v2.isValid() &&
-           doubleEqual(this->m_row, v1.m_row) &&
-           doubleEqual(this->m_row, v2.m_row);
+           v2.isValid();
 }
 // ____________________________________________________
 void Vertex::drawQuad(Board &board, const Vertex v1) const

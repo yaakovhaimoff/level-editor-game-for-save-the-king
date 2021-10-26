@@ -22,8 +22,8 @@ Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
     v2.m_col = (v0.m_col + v1.m_col) / 2;
     v2.m_row = (v1.m_row + height);
     // checking if the  new vertcies form a triangle
-    if (v0.isTriangle(v1, v2) &&
-        sameCol(v0, v1))
+    if (v0.isTriangle(v1, v2) && sameCol(v0, v1) &&
+        doubleEqual(v0.m_row, v1.m_row) && doubleEqual(v1.m_row, v2.m_row))
     {
         m_triangleVertex[0] = v0;
         m_triangleVertex[1] = v1;
