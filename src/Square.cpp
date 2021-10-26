@@ -4,7 +4,7 @@
 // _____________________________________________________________
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
 {
-    if (bottomLeft.isQuad(topRight) &&
+    if (isQuad(bottomLeft, topRight) &&
         (doubleEqual(bottomLeft.m_col, topRight.m_col) &&
          doubleEqual(bottomLeft.m_row, topRight.m_row)))
     {
@@ -84,11 +84,18 @@ bool Square::scale(double factor)
     // newTop.m_col = (center.m_col - m_topRight.m_col) * factor;
     // newTop.m_row = (center.m_row - m_topRight.m_row) * factor;
 
-    if (factor < 0 || newBottom.isQuad(newTop))
+    if (factor < 0 || isQuad(newBottom, newTop))
     {
         return false;
     }
     m_bottomLeft = newBottom;
     m_topRight = newTop;
     return true;
+}
+// _________________________________________
+bool Square::isQuad(const Vertex v1, const Vertex v2) const
+{
+    return v1.isHigherThan(v2) &&
+           v1.isToTheRightOf(v2) &&
+           v1.isValid() && v2.isValid();
 }

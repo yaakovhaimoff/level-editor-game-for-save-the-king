@@ -6,23 +6,24 @@
 class Square
 {
 public:
-    Square(const Vertex& bottomLeft, const Vertex& topRight);
-    Square(const Vertex& start, double length);
+    Square(const Vertex &bottomLeft, const Vertex &topRight);
+    Square(const Vertex &start, double length);
 
     ~Square();
-    Vertex getBottomLeft()const;
-    Vertex getTopRight()const;
-    double getLength()const;
+    Vertex getBottomLeft() const;
+    Vertex getTopRight() const;
+    double getLength() const;
 
-    void draw(Board& board) const;
-    Rectangle getBoundingRectangle()const;
+    void draw(Board &board) const;
+    Rectangle getBoundingRectangle() const;
     double getPerimeter() const;
-    double getArea()const;
-    Vertex getCenter()const;
+    double getArea() const;
+    Vertex getCenter() const;
     bool scale(double factor);
 
 private:
+    Rectangle m_square;
     Vertex m_bottomLeft;
     Vertex m_topRight;
+    bool isQuad(const Vertex v1, const Vertex v2) const;
 };
-

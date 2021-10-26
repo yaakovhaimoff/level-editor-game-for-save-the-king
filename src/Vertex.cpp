@@ -17,14 +17,6 @@ bool Vertex::isValid() const
 {
     return m_col >= 0 && m_col <= MAX_COL && m_row >= 0 && m_row <= MAX_ROW;
 }
-// _________________________________________
-bool Vertex::isQuad(const Vertex v2) const
-{
-    return this->isHigherThan(v2) &&
-           this->isToTheRightOf(v2) &&
-           this->isValid() && v2.isValid();
-}
-
 // ____________________________________________________
 std::istream &operator>>(std::istream &istr, Vertex &v)
 {
