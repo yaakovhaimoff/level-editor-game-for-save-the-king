@@ -85,8 +85,7 @@ Vertex Hourglass::getCenter() const
 // _________________________________
 bool Hourglass::scale(double factor)
 {
-    m_bottomTriangle.scale(factor);
-    m_topTriangle.scale(factor);
+   return  m_bottomTriangle.scale(factor) && m_topTriangle.scale(factor);
 }
 bool Hourglass::isHourglass(const Triangle &upper,
                             const Triangle &lower) const
