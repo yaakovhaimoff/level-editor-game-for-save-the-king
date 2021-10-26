@@ -1,7 +1,5 @@
 #include "Vertex.h"
 #include "macros.h"
-#include "Utilities.h"
-#pragma once
 
 #include <iostream>
 

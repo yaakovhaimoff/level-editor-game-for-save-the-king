@@ -1,9 +1,6 @@
 #pragma once
 
 #include "Hourglass.h"
-#include "Vertex.h"
-#include "Triangle.h"
-#include "Board.h"
 #include "Utilities.h"
 #include <cmath>
 

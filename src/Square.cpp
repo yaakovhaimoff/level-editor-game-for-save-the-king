@@ -1,8 +1,6 @@
 #pragma once
 
 #include "Square.h"
-#include "Rectangle.h"
-#include "Vertex.h"
 #include "Board.h"
 #include "Utilities.h"
 
