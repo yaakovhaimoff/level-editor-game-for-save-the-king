@@ -8,6 +8,7 @@
 class Rectangle
 {
 public:
+    Rectangle()=default;
     Rectangle(const Vertex &bottomLeft, const Vertex &topRight);
     Rectangle(const Vertex vertices[2]);
     Rectangle(const Vertex &start, double width, double height);
