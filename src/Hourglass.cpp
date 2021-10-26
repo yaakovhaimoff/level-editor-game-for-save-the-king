@@ -1,16 +1,12 @@
 #include <iostream>
 #include "Hourglass.h"
-
+/*
 // ________________________________________
 Hourglass::Hourglass(const Triangle &upper,
                      const Triangle &lower)
+    : m_topTriangle(upper), m_bottomTriangle(lower)
 {
-    if (isHourglass(upper, lower))
-    {
-        m_bottomTriangle = lower;
-        m_topTriangle = upper;
-    }
-    else
+    if (!isHourglass(m_topTriangle, m_bottomTriangle))
     {
         Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrtf(75));
         Triangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
@@ -18,14 +14,15 @@ Hourglass::Hourglass(const Triangle &upper,
     }
 }
 // ________________________________________
-Hourglass::Hourglass(const Triangle &lower)
+Hourglass::Hourglass(const Triangle &lower) :
+    m_topTriangle(lower), m_topTriangle(Vertex(lower.getVertex(0).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
+    Vertex(lower.getVertex(1).m_col,2 * distance(lower.getVertex(0), lower.getVertex(2))), lower.getVertex(2))
 {
-    Triangle newUpper;
-    newUpper.getVertex(0).m_col = lower.getVertex(0).m_col;
-    newUpper.getVertex(0).m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
-    newUpper.getVertex(1).m_col = lower.getVertex(1).m_col;
-    newUpper.getVertex(1).m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
-    newUpper.getVertex(2) = lower.getVertex(2);
+    // newUpper.getVertex(0).m_col = lower.getVertex(0).m_col;
+    // newUpper.getVertex(0).m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
+    // newUpper.getVertex(1).m_col = lower.getVertex(1).m_col;
+    // newUpper.getVertex(1).m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
+    // newUpper.getVertex(2) = lower.getVertex(2);
     if (isHourglass(newUpper, lower))
     {
         m_bottomTriangle = lower;
@@ -37,7 +34,6 @@ Hourglass::Hourglass(const Triangle &lower)
         Triangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
                  20 + 2 * sqrt(75));
     }
-
 }
 // ________________________________
 double Hourglass::getLength() const
@@ -119,3 +115,4 @@ bool Hourglass::isLengthSame(const Triangle &upper,
     return doubleEqual(distance(upper.getVertex(0), upper.getVertex(1)),
                        distance(lower.getVertex(0), lower.getVertex(1)));
 }
+*/
