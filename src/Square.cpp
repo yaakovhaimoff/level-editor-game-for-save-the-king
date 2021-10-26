@@ -28,17 +28,17 @@ Square::Square(const Vertex &start, double length)
     : Square(start, Vertex(length + m_bottomLeft.m_row,
                            length + m_bottomLeft.m_col)) {}
 // ________________________________________________________
-Vertex Square::getBottomLeft(const double leftBottomVertex)
+Vertex Square::getBottomLeft()const
 {
     return m_bottomLeft;
 }
 // _____________________________________________________
-Vertex Square::getTopRight(const double rightTopVertex)
+Vertex Square::getTopRight()const
 {
     return m_topRight;
 }
 // _____________________________________________
-double Square::getLength(const double topLength)
+double Square::getLength()const
 {
     return abs(m_bottomLeft.m_col - m_topRight.m_col);
 }

@@ -9,9 +9,9 @@ public:
     Square(const Vertex& start, double length);
 
     ~Square();
-    Vertex getBottomLeft(const double leftBottomVertex);
-    Vertex getTopRight(const double rightTopVertex);
-    double getLength(const double topLength);
+    Vertex getBottomLeft()const;
+    Vertex getTopRight()const;
+    double getLength()const;
 
     void draw(Board& board) const;
     Rectangle getBoundingRectangle()const;
