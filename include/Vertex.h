@@ -2,7 +2,6 @@
 
 #include <iosfwd>
 
-class board;
 
 struct Vertex
 {
@@ -19,8 +18,6 @@ struct Vertex
     bool isValid() const;
     bool isQuad(const Vertex v2) const;
     bool isTriangle(const Vertex v2, const Vertex v3) const;
-
-    void drawQuad(Board &board, const Vertex v1) const;
 };
 
 std::istream &operator>>(std::istream &istr, Vertex &v);

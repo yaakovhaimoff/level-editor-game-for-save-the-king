@@ -1,9 +1,6 @@
 #include "Vertex.h"
 #include "macros.h"
-
 #include <iostream>
-
-
 
 // _________________________________________________
 bool Vertex::isHigherThan(const Vertex &other) const
@@ -32,15 +29,6 @@ bool Vertex::isTriangle(const Vertex v1, const Vertex v2) const
 {
     return this->isValid() && v1.isValid() &&
            v2.isValid();
-}
-// ____________________________________________________
-void Vertex::drawQuad(Board &board, const Vertex v1) const
-{
-    board.drawLine(Vertex(this->m_col, this->m_row), Vertex(v1.m_col, this->m_row));
-    board.drawLine(Vertex(v1.m_col, this->m_row), v1);
-    board.drawLine(v1, Vertex(this->m_col, v1.m_row));
-    board.drawLine(Vertex(v1.m_col, this->m_row),
-                   Vertex(this->m_col, this->m_row));
 }
 // ____________________________________________________
 std::istream &operator>>(std::istream &istr, Vertex &v)

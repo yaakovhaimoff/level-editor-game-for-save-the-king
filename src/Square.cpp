@@ -45,7 +45,14 @@ double Square::getLength(const double topLength)
 // __________________________________
 void Square::draw(Board &board) const
 {
-    this->m_bottomLeft.drawQuad(board, this->m_topRight);
+     board.drawLine(this->m_bottomLeft,
+                   Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row));
+    board.drawLine(Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row),
+                   this->m_topRight);
+    board.drawLine(this->m_topRight, Vertex(this->m_bottomLeft.m_col,
+                                            this->m_topRight.m_row));
+    board.drawLine(Vertex(this->m_bottomLeft.m_col, this->m_topRight.m_row),
+                   this->m_bottomLeft);
 }
 // ___________________________________________
 Rectangle Square::getBoundingRectangle() const

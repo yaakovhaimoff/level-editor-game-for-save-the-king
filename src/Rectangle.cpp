@@ -53,15 +53,14 @@ double Rectangle::getWidth() const
 // _____________________________________
 void Rectangle::draw(Board &board) const
 {
-    // board.drawLine(this->m_bottomLeft,
-    //                Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row));
-    // board.drawLine(Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row),
-    //                this->m_topRight);
-    // board.drawLine(this->m_topRight, Vertex(this->m_bottomLeft.m_col,
-    //                                         this->m_topRight.m_row));
-    // board.drawLine(Vertex(this->m_bottomLeft.m_col, this->m_topRight.m_row),
-    //                this->m_bottomLeft);
-    this->m_bottomLeft.drawQuad(board, this->m_topRight);
+    board.drawLine(this->m_bottomLeft,
+                   Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row));
+    board.drawLine(Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row),
+                   this->m_topRight);
+    board.drawLine(this->m_topRight, Vertex(this->m_bottomLeft.m_col,
+                                            this->m_topRight.m_row));
+    board.drawLine(Vertex(this->m_bottomLeft.m_col, this->m_topRight.m_row),
+                   this->m_bottomLeft);
 }
 // _____________________________________________
 Rectangle Rectangle::getBoundingRectangle() const
