@@ -8,14 +8,14 @@
 #include "Board.h"
 
 #define RECTANGLE           1
-#define TRIANGLE            0
-#define SQUARE              0
-#define HOURGLASS           0
+#define TRIANGLE            1
+#define SQUARE              1
+#define HOURGLASS           1
 
-
+#if RECTANGLE
 #include "Rectangle.h"
 void printInfo(const Rectangle&);
-
+#endif
 
 #if TRIANGLE
 #include "Triangle.h"
