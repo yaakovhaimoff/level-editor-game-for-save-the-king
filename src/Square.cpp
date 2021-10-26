@@ -12,17 +12,17 @@
 // _____________________________________________________________
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
 {
-    if (bottomLeft.isQuad(topRight) ||
-        (doubleEqual(bottomLeft.m_col, topRight.m_col) ||
+    if (bottomLeft.isQuad(topRight) &&
+        (doubleEqual(bottomLeft.m_col, topRight.m_col) &&
          doubleEqual(bottomLeft.m_row, topRight.m_row)))
-    {
-        m_bottomLeft = Vertex(20, 10);
-        m_topRight = Vertex(30, 20);
-    }
-    else
     {
         m_bottomLeft = bottomLeft;
         m_topRight = topRight;
+    }
+    else
+    {
+        m_bottomLeft = Vertex(20, 10);
+        m_topRight = Vertex(30, 20);
     }
 }
 // _______________________________________________
@@ -47,12 +47,12 @@ double Square::getLength(const double topLength)
 // __________________________________
 void Square::draw(Board &board) const
 {
-    m_bottomLeft.drawQuad(board, m_topRight);
+    this->m_bottomLeft.drawQuad(board, this->m_topRight);
 }
 // ___________________________________________
 Rectangle Square::getBoundingRectangle() const
 {
-    return Rectangle(m_bottomLeft, m_topRight);
+    return Rectangle(this->m_bottomLeft, this->m_topRight);
 }
 // ___________________________
 double Square::getArea() const
@@ -69,8 +69,8 @@ double Rectangle::getPerimeter() const
 // ______________________________
 Vertex Square::getCenter() const
 {
-    return Vertex(abs(m_bottomLeft.m_col + m_topRight.m_col) / 2,
-                  abs(m_bottomLeft.m_row + m_topRight.m_row) / 2);
+    return Vertex(abs(this->m_bottomLeft.m_col + this->m_topRight.m_col) / 2,
+                  abs(this->m_bottomLeft.m_row + this->m_topRight.m_row) / 2);
 }
 // ______________________________
 bool Square::scale(double factor)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <iosfwd>
+#include "Board.h"
 
 struct Vertex
 {

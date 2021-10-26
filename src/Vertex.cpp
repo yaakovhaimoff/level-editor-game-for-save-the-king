@@ -1,7 +1,7 @@
 #include "Vertex.h"
 #include "macros.h"
 #include "Utilities.h"
-#include "Board.h"
+#pragma once
 
 #include <iostream>
 
@@ -23,9 +23,9 @@ bool Vertex::isValid() const
 // _________________________________________
 bool Vertex::isQuad(const Vertex v2) const
 {
-    return this->isHigherThan(v2) ||
-           this->isToTheRightOf(v2) ||
-           !this->isValid() || !v2.isValid();
+    return this->isHigherThan(v2) &&
+           this->isToTheRightOf(v2) &&
+           this->isValid() && v2.isValid();
 }
 // ____________________________________________________________
 bool Vertex::isTriangle(const Vertex v1, const Vertex v2) const

@@ -11,15 +11,15 @@
 // ____________________________________________________________________
 Rectangle::Rectangle(const Vertex &bottomLeft, const Vertex &topRight)
 {
-    if (bottomLeft.isQuad(topRight))
-    {
-        m_bottomLeft = Vertex(20, 10);
-        m_topRight = Vertex(30, 20);
-    }
-    else
+    if (topRight.isQuad(bottomLeft))
     {
         m_bottomLeft = bottomLeft;
         m_topRight = topRight;
+    }
+    else
+    {
+        m_bottomLeft = Vertex(20, 10);
+        m_topRight = Vertex(30, 20);
     }
 }
 // ____________________________________________
@@ -63,7 +63,7 @@ void Rectangle::draw(Board &board) const
     //                                         this->m_topRight.m_row));
     // board.drawLine(Vertex(this->m_bottomLeft.m_col, this->m_topRight.m_row),
     //                this->m_bottomLeft);
-    m_bottomLeft.drawQuad(board, m_topRight);
+    this->m_bottomLeft.drawQuad(board, this->m_topRight);
 }
 // _____________________________________________
 Rectangle Rectangle::getBoundingRectangle() const
@@ -85,8 +85,8 @@ double Rectangle::getPerimeter() const
 // ________________________________
 Vertex Rectangle::getCenter() const
 {
-    return Vertex(abs(m_bottomLeft.m_col + m_topRight.m_col) / 2,
-                  abs(m_bottomLeft.m_row + m_topRight.m_row) / 2);
+    return Vertex(abs(this->m_bottomLeft.m_col + this->m_topRight.m_col) / 2,
+                  abs(this->m_bottomLeft.m_row + this->m_topRight.m_row) / 2);
 }
 // _________________________________
 bool Rectangle::scale(double factor)

@@ -7,31 +7,24 @@
 #include "Utilities.h"
 #include <cmath>
 
-// _________________________________________
-// Triangle::Triangle(const Vertex vertcies[3])
-// {
-//     if (vertcies[0].isTriangle(vertcies[1], vertcies[2]) &&
-//         sameCol(vertcies[0], vertcies[1]))
-//     {
-//         m_triangleVertex[0] = vertcies[0];
-//         m_triangleVertex[1] = vertcies[1];
-//         m_triangleVertex[2] = vertcies[2];
-//     }
-//     else
-//     {
-//         m_triangleVertex[0] = Vertex(20, 20);
-//         m_triangleVertex[1] = Vertex(30, 20);
-//         m_triangleVertex[2] = Vertex(25, 20 + sqrt(75));
-//     }
-// }
 Triangle::Triangle(const Vertex vertcies[3])
-    : Triangle(vertcies[0], vertcies[1], vertcies[2].m_row - vertcies[1].m_row) {}
+    : Triangle(vertcies[0], vertcies[1], vertcies[2].m_row - vertcies[1].m_row)
+{
+    if (!doubleEqual(vertcies[2].m_col, m_triangleVertex->m_col))
+    {
+        m_triangleVertex[0] = Vertex(20, 20);
+        m_triangleVertex[1] = Vertex(30, 20);
+        m_triangleVertex[2] = Vertex(25, 20 + sqrt(75));
+    }
+}
 // ________________________________________________
 Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
 {
     Vertex v2;
+    // calculating the third vertex of the triangle
     v2.m_col = (v0.m_col + v1.m_col) / 2;
     v2.m_row = (v1.m_row + height);
+    // checking if the  new vertcies form a triangle
     if (v0.isTriangle(v1, v2) &&
         sameCol(v0, v1))
     {
@@ -39,6 +32,7 @@ Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
         m_triangleVertex[1] = v1;
         m_triangleVertex[2] = v2;
     }
+    // default triangle in of invalidate triangle from the user
     else
     {
         m_triangleVertex[0] = Vertex(20, 20);
@@ -46,6 +40,7 @@ Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
         m_triangleVertex[2] = Vertex(25, 20 + sqrt(75));
     }
 }
+// getting a vertex by choice for further use
 // _________________________________________
 Vertex Triangle::getVertex(int index) const
 {
@@ -72,7 +67,8 @@ void Triangle::draw(Board &board) const
 // _____________________________________________
 Rectangle Triangle::getBoundingRectangle() const
 {
-    return Rectangle(m_triangleVertex[0], Vertex(m_triangleVertex[1].m_col, m_triangleVertex[2].m_row));
+    return Rectangle(m_triangleVertex[0],
+                     Vertex(m_triangleVertex[1].m_col, m_triangleVertex[2].m_row));
 }
 // ______________________________
 double Triangle::getArea() const

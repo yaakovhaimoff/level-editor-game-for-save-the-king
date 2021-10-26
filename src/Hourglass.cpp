@@ -27,7 +27,7 @@ Hourglass::Hourglass(const Triangle &upper,
 // ________________________________________
 Hourglass::Hourglass(const Triangle &lower)
 {
-    if(){
+    if(lower){
 
     }
 }
