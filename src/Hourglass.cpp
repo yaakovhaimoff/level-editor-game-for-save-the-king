@@ -1,9 +1,6 @@
-#pragma once
-
+#include <iostream>
 #include "Hourglass.h"
-#include "Utilities.h"
-#include <cmath>
-
+/*
 // ________________________________________
 Hourglass::Hourglass(const Triangle &upper,
                      const Triangle &lower)
@@ -28,6 +25,7 @@ Hourglass::Hourglass(const Triangle &lower)
 
     }
 }
+*/
 // ________________________________
 double Hourglass::getLength() const
 {
@@ -77,7 +75,9 @@ Vertex Hourglass::getCenter() const
                    this->m_topTriangle.getCenter().m_row) /
                       2);
 }
+/*
 // _________________________________
 bool Hourglass::scale(double factor)
 {
 }
+*/

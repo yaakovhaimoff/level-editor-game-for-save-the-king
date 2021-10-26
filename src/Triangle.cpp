@@ -1,8 +1,5 @@
-#pragma once
-
+#include <iostream>
 #include "Triangle.h"
-#include "Utilities.h"
-#include <cmath>
 
 Triangle::Triangle(const Vertex vertcies[3])
     : Triangle(vertcies[0], vertcies[1], vertcies[2].m_row - vertcies[1].m_row)

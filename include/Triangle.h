@@ -1,9 +1,11 @@
 #pragma once
 
-#include <iosfwd>
-#include "Vertex.h"
 #include "Board.h"
+#include "Vertex.h"
 #include "Rectangle.h"
+#include "Utilities.h"
+#include "Rectangle.h"
+#include <cmath>
 
 class Triangle
 {

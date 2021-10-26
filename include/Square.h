@@ -1,4 +1,5 @@
 #pragma once
+#include "Board.h"
 #include "Vertex.h"
 #include "Rectangle.h"
 

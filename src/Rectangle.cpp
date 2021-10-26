@@ -1,11 +1,7 @@
 #pragma once
 
 #include "Rectangle.h"
-#include "Utilities.h"
 
-#include <iostream>
-#include <cmath>
-#include <iosfwd>
 // ____________________________________________________________________
 Rectangle::Rectangle(const Vertex &bottomLeft, const Vertex &topRight)
 {

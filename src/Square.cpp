@@ -1,12 +1,6 @@
-#pragma once
-
-#include "Square.h"
-#include "Board.h"
-#include "Utilities.h"
-
 #include <iostream>
-#include <cmath>
-#include <iosfwd>
+#include "Square.h"
+
 // _____________________________________________________________
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
 {
