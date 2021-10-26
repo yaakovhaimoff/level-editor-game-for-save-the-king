@@ -22,24 +22,24 @@ Square::Square(const Vertex &start, double length)
     : Square(start, Vertex(length + m_bottomLeft.m_row,
                            length + m_bottomLeft.m_col)) {}
 // ________________________________________________________
-Vertex Square::getBottomLeft()const
+Vertex Square::getBottomLeft() const
 {
     return m_bottomLeft;
 }
 // _____________________________________________________
-Vertex Square::getTopRight()const
+Vertex Square::getTopRight() const
 {
     return m_topRight;
 }
 // _____________________________________________
-double Square::getLength()const
+double Square::getLength() const
 {
     return abs(m_bottomLeft.m_col - m_topRight.m_col);
 }
 // __________________________________
 void Square::draw(Board &board) const
 {
-     board.drawLine(this->m_bottomLeft,
+    board.drawLine(this->m_bottomLeft,
                    Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row));
     board.drawLine(Vertex(this->m_topRight.m_col, this->m_bottomLeft.m_row),
                    this->m_topRight);
@@ -74,7 +74,7 @@ Vertex Square::getCenter() const
 // ______________________________
 bool Square::scale(double factor)
 {
-     Vertex newBottom, newTop, center = getCenter();
+    Vertex newBottom, newTop, center = getCenter();
     newBottom = Vertex((center.m_col - m_bottomLeft.m_col) * factor,
                        (center.m_row - m_bottomLeft.m_row) * factor);
     newTop = Vertex((center.m_col - newBottom.m_col) * factor,

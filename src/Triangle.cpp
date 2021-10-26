@@ -4,7 +4,7 @@
 Triangle::Triangle(const Vertex vertcies[3])
     : Triangle(vertcies[0], vertcies[1], vertcies[2].m_row - vertcies[1].m_row)
 {
-    if (!doubleEqual(vertcies[2].m_col, m_triangleVertex->m_col))
+    if (!sameCol(vertcies[2], m_triangleVertex[2]))
     {
         m_triangleVertex[0] = Vertex(20, 20);
         m_triangleVertex[1] = Vertex(30, 20);
@@ -19,8 +19,7 @@ Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
     v2.m_col = (v0.m_col + v1.m_col) / 2;
     v2.m_row = (v1.m_row + height);
     // checking if the  new vertcies form a triangle
-    if (v0.isTriangle(v1, v2) && sameCol(v0, v1) &&
-        doubleEqual(v0.m_row, v1.m_row) && doubleEqual(v1.m_row, v2.m_row))
+    if (isTriangle(v0, v1, v2) && sameCol(v0, v1) && isTriangle(v0, v1, v2))
     {
         m_triangleVertex[0] = v0;
         m_triangleVertex[1] = v1;
@@ -43,7 +42,7 @@ Vertex Triangle::getVertex(int index) const
 // _______________________________
 double Triangle::getLength() const
 {
-    return abs(m_triangleVertex[1].m_col - m_triangleVertex[0].m_col);
+    return distance(m_triangleVertex[0], m_triangleVertex[1]);
 }
 // _______________________________
 double Triangle::getHeight() const
@@ -61,8 +60,7 @@ void Triangle::draw(Board &board) const
 // _____________________________________________
 Rectangle Triangle::getBoundingRectangle() const
 {
-    return Rectangle(m_triangleVertex[0],
-                     Vertex(m_triangleVertex[1].m_col, m_triangleVertex[2].m_row));
+    return Rectangle(getLeftVertexForBounding(), getRightVertexForBounding());
 }
 // ______________________________
 double Triangle::getArea() const
@@ -97,7 +95,7 @@ bool Triangle::scale(double factor)
                    (center.m_row - m_triangleVertex[1].m_row) * factor);
     newV2 = Vertex((center.m_col - m_triangleVertex[2].m_col) * factor,
                    (center.m_row - m_triangleVertex[2].m_row) * factor);
-    if (factor < 0 || newV0.isTriangle(newV1, newV2))
+    if (factor < 0 || !isTriangle(newV0, newV1, newV2))
     {
         return false;
     }
@@ -105,4 +103,39 @@ bool Triangle::scale(double factor)
     m_triangleVertex[1] = newV1;
     m_triangleVertex[2] = newV2;
     return true;
+}
+// ______________________________________________
+Vertex Triangle::getLeftVertexForBounding() const
+{
+    if (m_triangleVertex[0].m_row < m_triangleVertex[2].m_row)
+    {
+        return m_triangleVertex[0];
+    }
+    return Vertex(m_triangleVertex[0].m_col, m_triangleVertex[2].m_row);
+}
+// ______________________________________________
+Vertex Triangle::getRightVertexForBounding() const
+{
+    if (m_triangleVertex[0].m_row < m_triangleVertex[2].m_row)
+    {
+        return Vertex(m_triangleVertex[1].m_col, m_triangleVertex[2].m_row);
+    }
+    return m_triangleVertex[1];
+}
+// _______________________________________________________________________________
+bool Triangle::isTriangle(const Vertex v0, const Vertex v1, const Vertex v2) const
+{
+    return isTriangleLengthValid(v0, v1, v2) && isTriangleVertexValid(v0, v1, v2);
+}
+// _________________________________________________________________________________________
+bool Triangle::isTriangleVertexValid(const Vertex v0, const Vertex v1, const Vertex v2) const
+{
+    return v0.isValid() && v1.isValid() &&
+           v2.isValid();
+}
+// __________________________________________________________________________________________
+bool Triangle::isTriangleLengthValid(const Vertex v0, const Vertex v1, const Vertex v2) const
+{
+    return doubleEqual(distance(v0, v1), distance(v1, v2)) &&
+           doubleEqual(distance(v0, v1), distance(v0, v2));
 }

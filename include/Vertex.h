@@ -17,7 +17,6 @@ struct Vertex
     bool isToTheRightOf(const Vertex &other) const;
     bool isValid() const;
     bool isQuad(const Vertex v2) const;
-    bool isTriangle(const Vertex v2, const Vertex v3) const;
 };
 
 std::istream &operator>>(std::istream &istr, Vertex &v);

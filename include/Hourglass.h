@@ -26,4 +26,12 @@ public:
 private:
     Triangle m_topTriangle;
     Triangle m_bottomTriangle;
+    bool isHourglass(const Triangle &upper,
+                     const Triangle &lower) const;
+    bool isUpperAndLower(const Triangle &upper,
+                         const Triangle &lower) const;
+    bool isVertexShared(const Triangle &upper,
+                         const Triangle &lower) const;
+    bool isLengthSame(const Triangle &upper,
+                         const Triangle &lower) const;
 };

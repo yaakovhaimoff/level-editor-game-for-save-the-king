@@ -24,12 +24,7 @@ bool Vertex::isQuad(const Vertex v2) const
            this->isToTheRightOf(v2) &&
            this->isValid() && v2.isValid();
 }
-// ____________________________________________________________
-bool Vertex::isTriangle(const Vertex v1, const Vertex v2) const
-{
-    return this->isValid() && v1.isValid() &&
-           v2.isValid();
-}
+
 // ____________________________________________________
 std::istream &operator>>(std::istream &istr, Vertex &v)
 {
