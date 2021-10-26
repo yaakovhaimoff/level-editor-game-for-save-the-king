@@ -1,6 +1,6 @@
 #include <iostream>
 #include "Hourglass.h"
-/*
+
 // ________________________________________
 Hourglass::Hourglass(const Triangle &upper,
                      const Triangle &lower)
@@ -14,19 +14,19 @@ Hourglass::Hourglass(const Triangle &upper,
     }
 }
 // ________________________________________
-Hourglass::Hourglass(const Triangle &lower) :
-    m_topTriangle(lower), m_topTriangle(Vertex(lower.getVertex(0).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
-    Vertex(lower.getVertex(1).m_col,2 * distance(lower.getVertex(0), lower.getVertex(2))), lower.getVertex(2))
+Hourglass::Hourglass(const Triangle &lower)
 {
-    // newUpper.getVertex(0).m_col = lower.getVertex(0).m_col;
-    // newUpper.getVertex(0).m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
-    // newUpper.getVertex(1).m_col = lower.getVertex(1).m_col;
-    // newUpper.getVertex(1).m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
-    // newUpper.getVertex(2) = lower.getVertex(2);
-    if (isHourglass(newUpper, lower))
+    Vertex newUpper[3];
+    newUpper[0].m_col = lower.getVertex(0).m_col;
+    newUpper[0].m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
+    newUpper[1].m_col = lower.getVertex(1).m_col;
+    newUpper[1].m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
+    newUpper[2] = lower.getVertex(2);
+    if (isUpperValid(newUpper))
     {
-        m_bottomTriangle = lower;
-        m_topTriangle = newUpper;
+        m_topTriangle.getVertex(0)= Vertex(lower.getVertex(0).m_col,2 * distance(lower.getVertex(0), lower.getVertex(2)));
+        m_topTriangle.getVertex(1) = Vertex(lower.getVertex(1).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2)));
+        m_topTriangle.getVertex(2) = lower.getVertex(2);
     }
     else
     {
@@ -115,4 +115,8 @@ bool Hourglass::isLengthSame(const Triangle &upper,
     return doubleEqual(distance(upper.getVertex(0), upper.getVertex(1)),
                        distance(lower.getVertex(0), lower.getVertex(1)));
 }
-*/
+// ________________________________________________
+bool Hourglass::isUpperValid(Vertex upper[3]) const
+{
+    return upper[0].isValid() && upper[1].isValid() && upper[2].isValid();
+}
