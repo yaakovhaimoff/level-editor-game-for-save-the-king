@@ -16,6 +16,7 @@ public:
 
     void draw(Board& board) const;
     Rectangle getBoundingRectangle()const;
+    double getPerimeter() const;
     double getArea()const;
     Vertex getCenter()const;
     bool scale(double factor);

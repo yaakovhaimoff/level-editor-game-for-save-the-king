@@ -60,7 +60,7 @@ double Square::getArea() const
            abs(this->m_bottomLeft.m_row - this->m_topRight.m_row);
 }
 // ___________________________________
-double Rectangle::getPerimeter() const
+double Square::getPerimeter() const
 {
     return (2 * abs(this->m_bottomLeft.m_col - this->m_topRight.m_col)) +
            (2 * abs(this->m_bottomLeft.m_row - this->m_topRight.m_row));
