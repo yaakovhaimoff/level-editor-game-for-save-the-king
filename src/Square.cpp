@@ -5,7 +5,7 @@
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
 : m_square(bottomLeft, topRight)
 {
-    if (!doubleEqual(bottomLeft.m_col, topRight.m_col) &&
+    if (!doubleEqual(bottomLeft.m_col, topRight.m_col) ||
          !doubleEqual(bottomLeft.m_row, topRight.m_row))
     {
         m_square = Rectangle(Vertex(20, 10),Vertex(30, 20));  
