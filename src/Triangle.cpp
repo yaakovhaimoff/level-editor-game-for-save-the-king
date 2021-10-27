@@ -11,13 +11,11 @@ Triangle::Triangle(const Vertex vertcies[3])
         m_triangleVertex[2] = Vertex(25, 20 + sqrt(75));
     }
 }
-// ________________________________________________
+// __________________________________________________________________
 Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
 {
-    Vertex v2;
     // calculating the third vertex of the triangle
-    v2.m_col = (v0.m_col + v1.m_col) / 2;
-    v2.m_row = (v1.m_row + height);
+    Vertex v2((v0.m_col + v1.m_col) / 2, (v1.m_row + height));
     // checking if the  new vertcies form a triangle
     // check hourGlass
     if (isTriangle(v0, v1, v2))

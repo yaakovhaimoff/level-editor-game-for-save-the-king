@@ -18,8 +18,8 @@ Hourglass::Hourglass(const Triangle &lower)
     : m_bottomTriangle(defLower),
       m_topTriangle(defUpper)
 {
-    Triangle newUpper(Vertex(lower.getVertex(0).m_col, 2 * lower.getHeight()),
-                      Vertex(lower.getVertex(1).m_col, 2 * lower.getHeight()),
+    Triangle newUpper(Vertex(lower.getVertex(0).m_col, lower.getVertex(0).m_row + 2 * lower.getHeight()),
+                      Vertex(lower.getVertex(1).m_col, lower.getVertex(0).m_row + 2 * lower.getHeight()),
                       -(lower.getHeight()));
 
     if (isHourglass(newUpper, lower))
@@ -36,8 +36,7 @@ double Hourglass::getLength() const
 // _________________________________
 double Hourglass::getHeight() const
 {
-    return m_topTriangle.getLength() +
-           m_bottomTriangle.getHeight();
+    return 2 * m_topTriangle.getLength();
 }
 // _____________________________________
 void Hourglass::draw(Board &board) const
@@ -78,7 +77,6 @@ bool Hourglass::scale(double factor)
     {
         return false;
     }
-    
     return true;
 }
 // ______________________________________________
@@ -115,14 +113,15 @@ void Hourglass::setValues()
     m_bottomTriangle = defLower;
     m_topTriangle = defUpper;
 }
+//_______________________________________________________
 void Hourglass::scaleHourglass(Triangle &t, double factor)
 {
     Vertex newTriangle[3], center = getCenter();
     newTriangle[0] = Vertex((center.m_col - (center.m_col - t.getVertex(0).m_col) * factor),
-                   (center.m_row - (center.m_row - t.getVertex(0).m_row) * factor));
+                            (center.m_row - (center.m_row - t.getVertex(0).m_row) * factor));
     newTriangle[1] = Vertex((center.m_col - (center.m_col - t.getVertex(1).m_col) * factor),
-                   (center.m_row - (center.m_row - t.getVertex(1).m_row) * factor));
+                            (center.m_row - (center.m_row - t.getVertex(1).m_row) * factor));
     newTriangle[2] = Vertex((center.m_col - (center.m_col - t.getVertex(2).m_col) * factor),
-                   (center.m_row - (center.m_row - t.getVertex(2).m_row) * factor));
+                            (center.m_row - (center.m_row - t.getVertex(2).m_row) * factor));
     t = newTriangle;
 }
