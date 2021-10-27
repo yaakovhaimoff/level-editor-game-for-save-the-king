@@ -10,7 +10,6 @@
 class Triangle
 {
 public:
-    Triangle() = default;
     Triangle(const Vertex vertcies[3]);
     Triangle(const Vertex &v0,
              const Vertex &v1, double height);
@@ -26,7 +25,9 @@ public:
     bool scale(double factor);
 
 private:
-    Vertex m_triangleVertex[3];
+    Vertex m_triangleVertex0;
+    Vertex m_triangleVertex1;
+    Vertex m_triangleVertex2;
     Vertex getLeftVertexForBounding() const;
     Vertex getRightVertexForBounding() const;
     bool isTriangle(const Vertex v0, const Vertex v1, const Vertex v2) const;
