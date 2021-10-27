@@ -4,37 +4,26 @@
 // ________________________________________
 Hourglass::Hourglass(const Triangle &upper,
                      const Triangle &lower)
+    : m_bottomTriangle(lower), m_topTriangle(upper)
 {
-    if (isHourglass(upper, lower))
-    {
-        setValues(upper, lower);
-    }
-    else
+    if (!isHourglass(upper, lower))
     {
         setValues();
     }
 }
 // ________________________________________
 Hourglass::Hourglass(const Triangle &lower)
+    : m_bottomTriangle(Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrt(75))),
+      m_topTriangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
+                    20 + 2 * sqrt(75))
 {
-    // Vertex newUpper[3];
-    // newUpper[0].m_col = lower.getVertex(0).m_col;
-    // newUpper[0].m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
-    // newUpper[1].m_col = lower.getVertex(1).m_col;
-    // newUpper[1].m_row = 2 * distance(lower.getVertex(0), lower.getVertex(2));
-    // newUpper[2] = lower.getVertex(2);
     Triangle newUpper(Vertex(lower.getVertex(0).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
                       Vertex(lower.getVertex(1).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
                       lower.getVertex(2).m_row - lower.getVertex(0).m_row);
     if (isHourglass(newUpper, lower))
     {
-        m_topTriangle = Triangle(newUpper);
-        m_bottomTriangle = Triangle(lower.getVertex(0), lower.getVertex(1),
-                                    lower.getVertex(2).m_row - lower.getVertex(0).m_row);
-    }
-    else
-    {
-        setValues();
+        m_topTriangle = newUpper;
+        m_bottomTriangle = lower;
     }
 }
 // ________________________________
@@ -118,11 +107,4 @@ void Hourglass::setValues()
     m_bottomTriangle = Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrt(75));
     m_topTriangle = Triangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
                              20 + 2 * sqrt(75));
-}
-// ____________________________________________
-void Hourglass::setValues(const Triangle &upper,
-                          const Triangle &lower)
-{
-    m_bottomTriangle = lower;
-    m_topTriangle = upper;
 }

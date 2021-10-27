@@ -35,7 +35,5 @@ private:
     bool isLengthSame(const Triangle &upper,
                          const Triangle &lower) const;
     bool isUpperValid(Vertex upper[3])const;
-    void setValues(const Triangle &upper,
-                     const Triangle &lower);
     void setValues();
 };
