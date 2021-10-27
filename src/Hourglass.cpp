@@ -40,7 +40,7 @@ double Hourglass::getHeight() const
 // _____________________________________
 void Hourglass::draw(Board &board) const
 {
-    m_bottomTriangle.draw(board);
+    // m_bottomTriangle.draw(board);
     // m_topTriangle.draw(board);
 }
 // ______________________________________________
