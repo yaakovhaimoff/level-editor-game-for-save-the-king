@@ -88,13 +88,13 @@ Vertex Triangle::getCenter() const
 bool Triangle::scale(double factor)
 {
     Vertex newV0, newV1, newV2, center = getCenter();
-    newV0 = Vertex((center.m_col - (center.m_col - m_triangleVertex0.m_col) * factor),
-                   (center.m_row - (center.m_row - m_triangleVertex0.m_row) * factor));
-    newV1 = Vertex((center.m_col - (center.m_col - m_triangleVertex1.m_col) * factor),
-                   (center.m_row - (center.m_row - m_triangleVertex1.m_row) * factor));
-    newV2 = Vertex((center.m_col - (center.m_col - m_triangleVertex2.m_col) * factor),
-                   (center.m_row - (center.m_row - m_triangleVertex2.m_row) * factor));
-    if (factor < 0 || !isTriangle(newV0, newV1, newV2))
+    newV0 = Vertex(center.m_col - ((center.m_col - m_triangleVertex0.m_col) * factor),
+                   center.m_row - ((center.m_row - m_triangleVertex0.m_row) * factor));
+    newV1 = Vertex(center.m_col - ((center.m_col - m_triangleVertex1.m_col) * factor),
+                   center.m_row - ((center.m_row - m_triangleVertex1.m_row) * factor));
+    newV2 = Vertex(center.m_col - ((center.m_col - m_triangleVertex2.m_col) * factor),
+                   center.m_row - ((center.m_row - m_triangleVertex2.m_row) * factor));
+    if (factor < 0 || !newV0.isValid()|| !newV1.isValid()|| !newV2.isValid())
     {
         return false;
     }
