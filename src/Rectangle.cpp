@@ -88,7 +88,7 @@ bool Rectangle::scale(double factor)
     newTop = Vertex(center.m_col - ((center.m_col - newBottom.m_col) * factor),
                     (center.m_row - (center.m_row - newBottom.m_row) * factor));
 
-    if (factor < 0 || isQuad(newBottom, newTop))
+    if (factor < 0 || !isQuad(newBottom, newTop))
     {
         return false;
     }
