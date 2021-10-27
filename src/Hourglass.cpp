@@ -13,9 +13,9 @@ Hourglass::Hourglass(const Triangle &upper,
 }
 // ________________________________________
 Hourglass::Hourglass(const Triangle &lower)
-    : m_bottomTriangle(Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrt(75))),
-      m_topTriangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
-                    20 + 2 * sqrt(75))
+    : m_bottomTriangle(Triangle(Vertex(20, 20), Vertex(30, 20), sqrt(75))),
+      m_topTriangle(Vertex(20, 20 + 2 * sqrt(75)), Vertex(30, 20 + 2 * sqrt(75)),
+                    sqrt(75))
 {
     Triangle newUpper(Vertex(lower.getVertex(0).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
                       Vertex(lower.getVertex(1).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
@@ -104,7 +104,7 @@ bool Hourglass::isLengthSame(const Triangle &upper,
 // ________________________
 void Hourglass::setValues()
 {
-    m_bottomTriangle = Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrt(75));
-    m_topTriangle = Triangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
-                             20 + 2 * sqrt(75));
+    m_bottomTriangle = Triangle(Vertex(20, 20), Vertex(30, 20), sqrt(75));
+    m_topTriangle = Triangle(Vertex(20, 20 + (2 * sqrt(75))), Vertex(30, 20 + 2 * sqrt(75)),
+                             sqrt(75));
 }
