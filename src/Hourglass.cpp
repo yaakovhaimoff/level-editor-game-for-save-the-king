@@ -6,7 +6,7 @@ Triangle defUpper = Triangle(Vertex(20, 20 + (2 * sqrt(75))), Vertex(30, 20 + 2 
 
 // ________________________________________
 Hourglass::Hourglass(const Triangle &upper, const Triangle &lower)
-    : m_bottomTriangle(lower), m_topTriangle(upper)
+    : m_topTriangle(upper), m_bottomTriangle(lower)
 {
     if (!isHourglass(upper, lower))
     {
