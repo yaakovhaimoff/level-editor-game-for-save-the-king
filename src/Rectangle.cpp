@@ -1,10 +1,14 @@
 #pragma once
 
 #include "Rectangle.h"
-
+//  main constructor wihch other constructors will go threw 
+// and check their Rectangles.
 // ____________________________________________________________________
 Rectangle::Rectangle(const Vertex &bottomLeft, const Vertex &topRight)
 {
+    // chechks all requirements for a rectangl.
+    // if true will set it by the user values of
+    // coordinates, else to the default.
     if (isQuad(topRight, bottomLeft))
     {
         m_bottomLeft = bottomLeft;
@@ -79,6 +83,8 @@ Vertex Rectangle::getCenter() const
     return Vertex((m_bottomLeft.m_col + m_topRight.m_col) / 2,
                   (m_bottomLeft.m_row + m_topRight.m_row) / 2);
 }
+// calculating the scale of the new rectangle by the center,
+// the new scale will be for example, the center x coordinate - ((center x - col x )*factor).
 // _________________________________
 bool Rectangle::scale(double factor)
 {

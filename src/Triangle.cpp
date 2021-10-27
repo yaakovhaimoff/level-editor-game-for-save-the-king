@@ -1,6 +1,9 @@
 #include <iostream>
 #include "Triangle.h"
 
+// we're setting the triangle members values before the function call,
+// and we'll only change them if they return on validate to
+// a triangle requirements as asked.
 Triangle::Triangle(const Vertex vertcies[3])
     : m_triangleVertex0(vertcies[0]), m_triangleVertex1(vertcies[1]), m_triangleVertex2(vertcies[2])
 {
@@ -11,6 +14,9 @@ Triangle::Triangle(const Vertex vertcies[3])
         m_triangleVertex2 = Vertex(25, 20 + sqrt(75));
     }
 }
+// we're setting the triangle members values before the function call,
+// and we'll only change them if they return on validate to
+// a triangle requirements as asked.
 // __________________________________________________________________
 Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
     : m_triangleVertex0(v0), m_triangleVertex1(v1),
@@ -24,7 +30,7 @@ Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
         m_triangleVertex2 = Vertex(25, 20 + sqrt(75));
     }
 }
-// getting a vertex by choice for further use
+// getting a vertex by choice with index for further use
 // _________________________________________
 Vertex Triangle::getVertex(int index) const
 {
@@ -58,7 +64,7 @@ void Triangle::draw(Board &board) const
     board.drawLine(m_triangleVertex1, m_triangleVertex2);
     board.drawLine(m_triangleVertex2, m_triangleVertex0);
 }
-
+// getting the bootom left, and top right vertcies of the bounding rectangle.
 // _____________________________________________
 Rectangle Triangle::getBoundingRectangle() const
 {
@@ -74,6 +80,7 @@ double Triangle::getPerimeter() const
 {
     return 3 * getLength();
 }
+// the center is the average of coordintes of each x, y in the triangle.
 // _______________________________
 Vertex Triangle::getCenter() const
 {
@@ -84,6 +91,8 @@ Vertex Triangle::getCenter() const
                    m_triangleVertex2.m_row) /
                       3);
 }
+// calculating the scale of the new rectangle by the center,
+// the new scale will be for example, the center x coordinate - ((center x - col x )*factor).
 // ________________________________
 bool Triangle::scale(double factor)
 {
@@ -103,6 +112,8 @@ bool Triangle::scale(double factor)
     m_triangleVertex2 = newV2;
     return true;
 }
+// checking if the triangle is standing or upside down
+// to return the vertex for the bounding rectangle.
 // ______________________________________________
 Vertex Triangle::getLeftVertexForBounding() const
 {
@@ -121,6 +132,7 @@ Vertex Triangle::getRightVertexForBounding() const
     }
     return m_triangleVertex1;
 }
+// checking for the triangle requirements of a valid triangle
 // _______________________________________________________________________________
 bool Triangle::isTriangle(const Vertex v0, const Vertex v1, const Vertex v2) const
 {

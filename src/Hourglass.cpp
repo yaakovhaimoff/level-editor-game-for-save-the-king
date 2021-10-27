@@ -1,5 +1,5 @@
-
 #include "Hourglass.h"
+
 Triangle defLower = Triangle(Vertex(20, 20), Vertex(30, 20), sqrt(75));
 Triangle defUpper = Triangle(Vertex(20, 20 + (2 * sqrt(75))), Vertex(30, 20 + 2 * sqrt(75)),
                              -sqrt(75));
@@ -15,8 +15,7 @@ Hourglass::Hourglass(const Triangle &upper, const Triangle &lower)
 }
 // ________________________________________
 Hourglass::Hourglass(const Triangle &lower)
-    : m_bottomTriangle(defLower),
-      m_topTriangle(defUpper)
+    : m_bottomTriangle(defLower), m_topTriangle(defUpper)
 {
     Triangle newUpper(Vertex(lower.getVertex(0).m_col, lower.getVertex(0).m_row + 2 * lower.getHeight()),
                       Vertex(lower.getVertex(1).m_col, lower.getVertex(0).m_row + 2 * lower.getHeight()),
@@ -67,6 +66,8 @@ Vertex Hourglass::getCenter() const
 {
     return m_bottomTriangle.getVertex(2);
 }
+// sending each triangle and scaling him by him self with
+// hourglass center.
 // _________________________________
 bool Hourglass::scale(double factor)
 {
@@ -80,6 +81,7 @@ bool Hourglass::scale(double factor)
     }
     return true;
 }
+// checking for hourglass requirements
 // ______________________________________________
 bool Hourglass::isHourglass(const Triangle &upper,
                             const Triangle &lower) const
@@ -108,6 +110,8 @@ bool Hourglass::isLengthSame(const Triangle &upper,
     return doubleEqual(distance(upper.getVertex(0), upper.getVertex(1)),
                        distance(lower.getVertex(0), lower.getVertex(1)));
 }
+// setting the values for the default triangle in case of 
+// unvalid insert by the user coordinates.
 // ________________________
 void Hourglass::setValues()
 {
