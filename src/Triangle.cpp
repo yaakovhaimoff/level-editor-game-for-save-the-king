@@ -14,7 +14,7 @@ Triangle::Triangle(const Vertex vertcies[3])
 // __________________________________________________________________
 Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
     : m_triangleVertex0(v0), m_triangleVertex1(v1),
-      m_triangleVertex2(Vertex((v0.m_col + v1.m_col) / 2, (v1.m_row + height)))
+      m_triangleVertex2(Vertex((v0.m_col + v1.m_col) / 2, v1.m_row + height))
 {
     // checking if the  new vertcies form a triangle
     if (!isTriangle(m_triangleVertex0, m_triangleVertex1, m_triangleVertex2))
@@ -28,19 +28,23 @@ Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
 // _________________________________________
 Vertex Triangle::getVertex(int index) const
 {
-    switch(index){
-        case 0: return m_triangleVertex0;
+    switch (index)
+    {
+    case 0:
+        return m_triangleVertex0;
         break;
-        case 1: return m_triangleVertex1;
+    case 1:
+        return m_triangleVertex1;
         break;
-        case 2: m_triangleVertex2;
+    case 2:
+        return m_triangleVertex2;
         break;
     }
 }
 // _______________________________
 double Triangle::getLength() const
 {
-    return distance(m_triangleVertex0, m_triangleVertex1);
+    return m_triangleVertex0.m_col - m_triangleVertex1.m_col;
 }
 // _______________________________
 double Triangle::getHeight() const
