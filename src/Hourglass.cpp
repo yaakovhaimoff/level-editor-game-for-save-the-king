@@ -122,7 +122,6 @@ void Hourglass::scaleHourglass(Triangle &t, double factor)
                             center.m_row - ((center.m_row - t.getVertex(0).m_row) * factor));
     newTriangle[1] = Vertex(center.m_col - ((center.m_col - t.getVertex(1).m_col) * factor),
                             center.m_row - ((center.m_row - t.getVertex(1).m_row) * factor));
-    newTriangle[2] = Vertex(center.m_col - ((center.m_col - t.getVertex(2).m_col) * factor),
-                            center.m_row - ((center.m_row - t.getVertex(2).m_row) * factor));
+    newTriangle[2] = center;
     t = newTriangle;
 }
