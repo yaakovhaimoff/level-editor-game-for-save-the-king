@@ -4,7 +4,7 @@
 Triangle::Triangle(const Vertex vertcies[3])
     : m_triangleVertex0(vertcies[0]), m_triangleVertex1(vertcies[1]), m_triangleVertex2(vertcies[2])
 {
-    if (!sameRow(vertcies[2], m_triangleVertex2))
+    if (!isTriangle(m_triangleVertex0, m_triangleVertex1, m_triangleVertex2))
     {
         m_triangleVertex0 = Vertex(20, 20);
         m_triangleVertex1 = Vertex(30, 20);
