@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Square.h"
 
+Rectangle defSquare = Rectangle(Vertex(20, 10), Vertex(30, 20));
+
 // _____________________________________________________________
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
     : m_square(bottomLeft, topRight)
@@ -8,7 +10,7 @@ Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
     if (!doubleEqual(distance(bottomLeft, Vertex(topRight.m_col, bottomLeft.m_row)),
                     distance(Vertex(topRight.m_col, bottomLeft.m_row), topRight)))
     {
-        m_square = Rectangle(Vertex(20, 10), Vertex(30, 20));
+        m_square = defSquare;
     }
 }
 // _______________________________________________

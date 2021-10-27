@@ -18,9 +18,9 @@ Hourglass::Hourglass(const Triangle &lower)
     : m_bottomTriangle(defLower),
       m_topTriangle(defUpper)
 {
-    Triangle newUpper(Vertex(lower.getVertex(0).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
-                      Vertex(lower.getVertex(1).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
-                      -(lower.getVertex(2).m_row - lower.getVertex(0).m_row));
+    Triangle newUpper(Vertex(lower.getVertex(0).m_col, 2* lower.getHeight()),
+                      Vertex(lower.getVertex(1).m_col, 2 * lower.getHeight()),
+                      -(lower.getHeight()));
     if (isHourglass(newUpper, lower))
     {
         m_topTriangle = newUpper;
