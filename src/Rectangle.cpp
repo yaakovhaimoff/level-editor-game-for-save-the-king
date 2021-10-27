@@ -44,7 +44,7 @@ double Rectangle::getHeight() const
 // _______________________________
 double Rectangle::getWidth() const
 {
-    return abs(m_topRight.m_col + m_bottomLeft.m_col);
+    return abs(m_topRight.m_col - m_bottomLeft.m_col);
 }
 // _____________________________________
 void Rectangle::draw(Board &board) const
@@ -76,8 +76,7 @@ double Rectangle::getPerimeter() const
 // ________________________________
 Vertex Rectangle::getCenter() const
 {
-    return Vertex(abs(m_bottomLeft.m_col + m_topRight.m_col) / 2,
-                  abs(m_bottomLeft.m_row + m_topRight.m_row) / 2);
+    return Vertex(getHeight() / 2, getWidth() / 2);
 }
 // _________________________________
 bool Rectangle::scale(double factor)
@@ -97,9 +96,9 @@ bool Rectangle::scale(double factor)
     return true;
 }
 // _________________________________________
-bool Rectangle::isQuad(const Vertex v1, const Vertex v2) const
+bool Rectangle::isQuad(const Vertex topRight, const Vertex bottomLeft) const
 {
-    return v1.isHigherThan(v2) &&
-           v1.isToTheRightOf(v2) &&
-           v1.isValid() && v2.isValid();
+    return topRight.isHigherThan(bottomLeft) &&
+           topRight.isToTheRightOf(bottomLeft) &&
+           topRight.isValid() && bottomLeft.isValid();
 }

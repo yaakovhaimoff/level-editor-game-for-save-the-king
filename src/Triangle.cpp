@@ -66,15 +66,12 @@ Rectangle Triangle::getBoundingRectangle() const
 // ______________________________
 double Triangle::getArea() const
 {
-    return (abs(m_triangleVertex[0].m_col - m_triangleVertex[1].m_col) *
-            abs(m_triangleVertex[2].m_row - m_triangleVertex[1].m_row)) /
-           2;
+    return (getLength() * getHeight()) / 2;
 }
 // __________________________________
 double Triangle::getPerimeter() const
 {
-    return 3 *
-           abs(m_triangleVertex[0].m_col - m_triangleVertex[1].m_col);
+    return 3 * getLength();
 }
 // _______________________________
 Vertex Triangle::getCenter() const
