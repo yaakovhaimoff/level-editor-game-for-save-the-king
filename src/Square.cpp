@@ -3,18 +3,18 @@
 
 // _____________________________________________________________
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
-: m_square(bottomLeft, topRight)
+    : m_square(bottomLeft, topRight)
 {
-    if (!doubleEqual(bottomLeft.m_col, topRight.m_col) ||
-         !doubleEqual(bottomLeft.m_row, topRight.m_row))
+    if (doubleEqual(distance(bottomLeft, Vertex(topRight.m_col, bottomLeft.m_row)),
+                    distance(Vertex(topRight.m_col, bottomLeft.m_row), topRight)))
     {
-        m_square = Rectangle(Vertex(20, 10),Vertex(30, 20));  
+        m_square = Rectangle(Vertex(20, 10), Vertex(30, 20));
     }
 }
 // _______________________________________________
 Square::Square(const Vertex &start, double length)
     : m_square(start, Vertex(length + start.m_row,
-                           length + start.m_col)) {}
+                             length + start.m_col)) {}
 // ________________________________________________________
 Vertex Square::getBottomLeft() const
 {
