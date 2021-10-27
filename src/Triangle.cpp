@@ -53,9 +53,9 @@ double Triangle::getHeight() const
 // _____________________________________
 void Triangle::draw(Board &board) const
 {
-    board.drawLine(this->m_triangleVertex[0], this->m_triangleVertex[1]);
-    board.drawLine(this->m_triangleVertex[1], this->m_triangleVertex[2]);
-    board.drawLine(this->m_triangleVertex[2], this->m_triangleVertex[0]);
+    board.drawLine(m_triangleVertex[0], m_triangleVertex[1]);
+    board.drawLine(m_triangleVertex[1], m_triangleVertex[2]);
+    board.drawLine(m_triangleVertex[2], m_triangleVertex[0]);
 }
 
 // _____________________________________________

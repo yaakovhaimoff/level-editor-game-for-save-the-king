@@ -4,6 +4,7 @@
 #include "Vertex.h"
 #include "Triangle.h"
 #include "Utilities.h"
+#include <iostream>
 #include <cmath>
 
 class Hourglass
