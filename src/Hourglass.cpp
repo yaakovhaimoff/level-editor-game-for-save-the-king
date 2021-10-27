@@ -40,8 +40,8 @@ double Hourglass::getHeight() const
 // _____________________________________
 void Hourglass::draw(Board &board) const
 {
-    // m_bottomTriangle.draw(board);
-    // m_topTriangle.draw(board);
+    m_bottomTriangle.draw(board);
+    m_topTriangle.draw(board);
 }
 // ______________________________________________
 Rectangle Hourglass::getBoundingRectangle() const
@@ -75,7 +75,7 @@ bool Hourglass::scale(double factor)
     scaleHourglass(m_topTriangle, factor);
 
     if (factor < 0 || !m_bottomTriangle.getVertex(0).isValid() ||
-     m_topTriangle.getVertex(1).isValid())
+     !m_topTriangle.getVertex(1).isValid())
     {
         return false;
     }
@@ -115,8 +115,8 @@ bool Hourglass::isLengthSame(const Triangle &upper,
 // ________________________
 void Hourglass::setValues()
 {
-    // m_bottomTriangle = defLower;
-    // m_topTriangle = defUpper;
+    m_bottomTriangle = defLower;
+    m_topTriangle = defUpper;
 }
 //_______________________________________________________
 void Hourglass::scaleHourglass(Triangle &t, double factor)
