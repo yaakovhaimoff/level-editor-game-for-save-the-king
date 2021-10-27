@@ -1,6 +1,8 @@
 #include <iostream>
 #include "Hourglass.h"
-
+Triangle defLower = Triangle(Vertex(20, 20), Vertex(30, 20), sqrt(75));
+Triangle defUpper = Triangle(Vertex(20, 20 + (2 * sqrt(75))), Vertex(30, 20 + 2 * sqrt(75)),
+                             sqrt(75));
 // ________________________________________
 Hourglass::Hourglass(const Triangle &upper,
                      const Triangle &lower)
@@ -13,13 +15,12 @@ Hourglass::Hourglass(const Triangle &upper,
 }
 // ________________________________________
 Hourglass::Hourglass(const Triangle &lower)
-    : m_bottomTriangle(Vertex(20, 20), Vertex(30, 20), sqrt(75)),
-      m_topTriangle(Vertex(20, 20 + 2 * sqrt(75)), Vertex(30, 20 + 2 * sqrt(75)),
-                    sqrt(75))
+    : m_bottomTriangle(defLower),
+      m_topTriangle(defUpper)
 {
     Triangle newUpper(Vertex(lower.getVertex(0).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
                       Vertex(lower.getVertex(1).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2))),
-                      lower.getVertex(2).m_row - lower.getVertex(0).m_row);
+                      -(lower.getVertex(2).m_row - lower.getVertex(0).m_row));
     if (isHourglass(newUpper, lower))
     {
         m_topTriangle = newUpper;
