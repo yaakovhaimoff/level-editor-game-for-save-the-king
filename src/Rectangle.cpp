@@ -76,7 +76,8 @@ double Rectangle::getPerimeter() const
 // ________________________________
 Vertex Rectangle::getCenter() const
 {
-    return Vertex(getHeight() / 2, getWidth() / 2);
+    return Vertex((m_bottomLeft.m_col + m_topRight.m_col) / 2,
+                  (m_bottomLeft.m_row + m_topRight.m_row) / 2);
 }
 // _________________________________
 bool Rectangle::scale(double factor)
