@@ -10,7 +10,6 @@ public:
     Square(const Vertex &bottomLeft, const Vertex &topRight);
     Square(const Vertex &start, double length);
 
-    ~Square();
     Vertex getBottomLeft() const;
     Vertex getTopRight() const;
     double getLength() const;
@@ -24,7 +23,5 @@ public:
 
 private:
     Rectangle m_square;
-    Vertex m_bottomLeft;
-    Vertex m_topRight;
     bool isQuad(const Vertex v1, const Vertex v2) const;
 };

@@ -19,6 +19,7 @@ Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
     v2.m_col = (v0.m_col + v1.m_col) / 2;
     v2.m_row = (v1.m_row + height);
     // checking if the  new vertcies form a triangle
+    // check hourGlass
     if (isTriangle(v0, v1, v2) && sameCol(v0, v1) && isTriangle(v0, v1, v2))
     {
         m_triangleVertex[0] = v0;
@@ -89,12 +90,12 @@ Vertex Triangle::getCenter() const
 bool Triangle::scale(double factor)
 {
     Vertex newV0, newV1, newV2, center = getCenter();
-    newV0 = Vertex((center.m_col - m_triangleVertex[0].m_col) * factor,
-                   (center.m_row - m_triangleVertex[0].m_row) * factor);
-    newV1 = Vertex((center.m_col - m_triangleVertex[1].m_col) * factor,
-                   (center.m_row - m_triangleVertex[1].m_row) * factor);
-    newV2 = Vertex((center.m_col - m_triangleVertex[2].m_col) * factor,
-                   (center.m_row - m_triangleVertex[2].m_row) * factor);
+    newV0 = Vertex((center.m_col - (center.m_col - m_triangleVertex[0].m_col) * factor),
+                   (center.m_row - (center.m_row - m_triangleVertex[0].m_row) * factor));
+    newV1 = Vertex((center.m_col - (center.m_col - m_triangleVertex[1].m_col) * factor),
+                   (center.m_row - (center.m_row - m_triangleVertex[1].m_row) * factor));
+    newV2 = Vertex((center.m_col - (center.m_col - m_triangleVertex[2].m_col) * factor),
+                   (center.m_row - (center.m_row - m_triangleVertex[2].m_row) * factor));
     if (factor < 0 || !isTriangle(newV0, newV1, newV2))
     {
         return false;
@@ -107,7 +108,7 @@ bool Triangle::scale(double factor)
 // ______________________________________________
 Vertex Triangle::getLeftVertexForBounding() const
 {
-    if (m_triangleVertex[0].m_row < m_triangleVertex[2].m_row)
+    if (m_triangleVertex[2].isHigherThan(m_triangleVertex[0]))
     {
         return m_triangleVertex[0];
     }
@@ -116,7 +117,7 @@ Vertex Triangle::getLeftVertexForBounding() const
 // ______________________________________________
 Vertex Triangle::getRightVertexForBounding() const
 {
-    if (m_triangleVertex[0].m_row < m_triangleVertex[2].m_row)
+    if (m_triangleVertex[2].isHigherThan(m_triangleVertex[0]))
     {
         return Vertex(m_triangleVertex[1].m_col, m_triangleVertex[2].m_row);
     }
