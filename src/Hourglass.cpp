@@ -84,28 +84,28 @@ bool Hourglass::scale(double factor)
 // checking for hourglass requirements
 // ______________________________________________
 bool Hourglass::isHourglass(const Triangle &upper,
-                            const Triangle &lower) const
+                            const Triangle &lower) 
 {
     return isUpperAndLower(upper, lower) && isVertexShared(upper, lower) &&
            isLengthSame(upper, lower);
 }
 // __________________________________________________
 bool Hourglass::isUpperAndLower(const Triangle &upper,
-                                const Triangle &lower) const
+                                const Triangle &lower) 
 {
     return upper.getVertex(0).isHigherThan(upper.getVertex(2)) &&
            lower.getVertex(2).isHigherThan(lower.getVertex(0));
 }
 // __________________________________________________
 bool Hourglass::isVertexShared(const Triangle &upper,
-                               const Triangle &lower) const
+                               const Triangle &lower)
 {
     return doubleEqual(upper.getVertex(2).m_col, lower.getVertex(2).m_col) &&
            doubleEqual(upper.getVertex(2).m_row, lower.getVertex(2).m_row);
 }
 // __________________________________________________
 bool Hourglass::isLengthSame(const Triangle &upper,
-                             const Triangle &lower) const
+                             const Triangle &lower)
 {
     return doubleEqual(distance(upper.getVertex(0), upper.getVertex(1)),
                        distance(lower.getVertex(0), lower.getVertex(1)));

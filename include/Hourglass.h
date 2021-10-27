@@ -28,14 +28,14 @@ private:
     Triangle m_topTriangle;
     Triangle m_bottomTriangle;
     bool isHourglass(const Triangle &upper,
-                     const Triangle &lower) const;
+                     const Triangle &lower);
     bool isUpperAndLower(const Triangle &upper,
-                         const Triangle &lower) const;
+                         const Triangle &lower);
     bool isVertexShared(const Triangle &upper,
-                         const Triangle &lower) const;
+                         const Triangle &lower);
     bool isLengthSame(const Triangle &upper,
-                         const Triangle &lower) const;
-    bool isUpperValid(Vertex upper[3])const;
+                         const Triangle &lower);
+    bool isUpperValid(Vertex upper[3]);
     void setValues();
     void scaleHourglass(Triangle &t, double factor);
 };
