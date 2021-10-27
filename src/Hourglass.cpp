@@ -2,7 +2,7 @@
 #include "Hourglass.h"
 Triangle defLower = Triangle(Vertex(20, 20), Vertex(30, 20), sqrt(75));
 Triangle defUpper = Triangle(Vertex(20, 20 + (2 * sqrt(75))), Vertex(30, 20 + 2 * sqrt(75)),
-                             sqrt(75));
+                             -sqrt(75));
 // ________________________________________
 Hourglass::Hourglass(const Triangle &upper,
                      const Triangle &lower)
@@ -105,7 +105,6 @@ bool Hourglass::isLengthSame(const Triangle &upper,
 // ________________________
 void Hourglass::setValues()
 {
-    m_bottomTriangle = Triangle(Vertex(20, 20), Vertex(30, 20), sqrt(75));
-    m_topTriangle = Triangle(Vertex(20, 20 + (2 * sqrt(75))), Vertex(30, 20 + 2 * sqrt(75)),
-                             sqrt(75));
+    m_bottomTriangle = defLower;
+    m_topTriangle = defUpper;
 }
