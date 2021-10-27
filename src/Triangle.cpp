@@ -50,7 +50,7 @@ Vertex Triangle::getVertex(int index) const
 // _______________________________
 double Triangle::getLength() const
 {
-    return m_triangleVertex0.m_col - m_triangleVertex1.m_col;
+    return abs(m_triangleVertex0.m_col - m_triangleVertex1.m_col);
 }
 // _______________________________
 double Triangle::getHeight() const
