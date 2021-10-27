@@ -28,7 +28,7 @@ Hourglass::Hourglass(const Triangle &lower)
         // m_topTriangle.getVertex(1) = Vertex(lower.getVertex(1).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2)));
         // m_topTriangle.getVertex(2) = lower.getVertex(2);
         m_topTriangle = Triangle(newUpper);
-        m_bottomTriangle = lower;
+        m_bottomTriangle = Triangle(lower);
     }
     else
     {
