@@ -10,7 +10,7 @@
 #define RECTANGLE           1
 #define TRIANGLE            1
 #define SQUARE              1
-#define HOURGLASS           
+#define HOURGLASS           0
 
 #if RECTANGLE
 #include "Rectangle.h"
