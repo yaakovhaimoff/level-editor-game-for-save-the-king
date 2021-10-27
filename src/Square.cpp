@@ -21,8 +21,8 @@ Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
 }
 // _______________________________________________
 Square::Square(const Vertex &start, double length)
-    : Square(start, Vertex(length + m_bottomLeft.m_row,
-                           length + m_bottomLeft.m_col)) {}
+    : Square(start, Vertex(length + start.m_row,
+                           length + start.m_col)) {}
 // ________________________________________________________
 Vertex Square::getBottomLeft() const
 {
