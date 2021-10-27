@@ -66,7 +66,7 @@ Vertex Square::getCenter() const
 // ______________________________
 bool Square::scale(double factor)
 {
-    m_square.scale(factor);
+    return m_square.scale(factor);
 }
 // _________________________________________
 bool Square::isQuad(const Vertex v1, const Vertex v2) const
