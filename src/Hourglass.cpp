@@ -8,9 +8,9 @@ Hourglass::Hourglass(const Triangle &upper,
 {
     if (!isHourglass(m_topTriangle, m_bottomTriangle))
     {
-        Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrtf(75));
-        Triangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
-                 20 + 2 * sqrt(75));
+        m_bottomTriangle = Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrtf(75));
+        m_topTriangle = Triangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
+                                 20 + 2 * sqrt(75));
     }
 }
 // ________________________________________
@@ -24,15 +24,15 @@ Hourglass::Hourglass(const Triangle &lower)
     newUpper[2] = lower.getVertex(2);
     if (isUpperValid(newUpper))
     {
-        m_topTriangle.getVertex(0)= Vertex(lower.getVertex(0).m_col,2 * distance(lower.getVertex(0), lower.getVertex(2)));
+        m_topTriangle.getVertex(0) = Vertex(lower.getVertex(0).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2)));
         m_topTriangle.getVertex(1) = Vertex(lower.getVertex(1).m_col, 2 * distance(lower.getVertex(0), lower.getVertex(2)));
         m_topTriangle.getVertex(2) = lower.getVertex(2);
     }
     else
     {
-        Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrtf(75));
-        Triangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
-                 20 + 2 * sqrt(75));
+        m_bottomTriangle = Triangle(Vertex(20, 20), Vertex(30, 20), 20 + sqrtf(75));
+        m_topTriangle = Triangle(Vertex(25, 20 + sqrt(75)), Vertex(20, 20 + 2 * sqrt(75)),
+                                 20 + 2 * sqrt(75));
     }
 }
 // ________________________________
@@ -80,7 +80,7 @@ Vertex Hourglass::getCenter() const
 // _________________________________
 bool Hourglass::scale(double factor)
 {
-   return  m_bottomTriangle.scale(factor) && m_topTriangle.scale(factor);
+    return m_bottomTriangle.scale(factor) && m_topTriangle.scale(factor);
 }
 // ______________________________________________
 bool Hourglass::isHourglass(const Triangle &upper,
