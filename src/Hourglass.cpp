@@ -13,7 +13,7 @@ Hourglass::Hourglass(const Triangle &upper,
 }
 // ________________________________________
 Hourglass::Hourglass(const Triangle &lower)
-    : m_bottomTriangle(Vertex(20, 20), Vertex(30, 20), sqrt(75))),
+    : m_bottomTriangle(Vertex(20, 20), Vertex(30, 20), sqrt(75)),
       m_topTriangle(Vertex(20, 20 + 2 * sqrt(75)), Vertex(30, 20 + 2 * sqrt(75)),
                     sqrt(75))
 {
