@@ -7,10 +7,10 @@
 #include "Vertex.h"
 #include "Board.h"
 
-#define RECTANGLE           1
-#define TRIANGLE            1
+#define RECTANGLE           0
+#define TRIANGLE            0
 #define SQUARE              1
-#define HOURGLASS           1
+#define HOURGLASS           0
 
 #if RECTANGLE
 #include "Rectangle.h"
