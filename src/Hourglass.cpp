@@ -73,7 +73,8 @@ bool Hourglass::scale(double factor)
     scaleHourglass(m_bottomTriangle, factor);
     scaleHourglass(m_topTriangle, factor);
 
-    if (factor < 0 || !isHourglass(m_bottomTriangle, m_topTriangle))
+    if (factor < 0 || !m_bottomTriangle.getVertex(0).isValid() ||
+     m_topTriangle.getVertex(1).isValid())
     {
         return false;
     }
