@@ -3,7 +3,7 @@
 
 // _____________________________________________________________
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
-: Rectangle(bottomLeft, topRight)
+: m_square(bottomLeft, topRight)
 {
     if (!doubleEqual(bottomLeft.m_col, topRight.m_col) &&
          !doubleEqual(bottomLeft.m_row, topRight.m_row))
@@ -13,7 +13,7 @@ Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
 }
 // _______________________________________________
 Square::Square(const Vertex &start, double length)
-    : Square(start, Vertex(length + start.m_row,
+    : m_square(start, Vertex(length + start.m_row,
                            length + start.m_col)) {}
 // ________________________________________________________
 Vertex Square::getBottomLeft() const
