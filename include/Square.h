@@ -23,5 +23,4 @@ public:
 
 private:
     Rectangle m_square;
-    bool isQuad(const Vertex v1, const Vertex v2) const;
 };

@@ -1,22 +1,14 @@
 #include <iostream>
 #include "Square.h"
 
-// call rectangle constructor to build
-// and then check
 // _____________________________________________________________
 Square::Square(const Vertex &bottomLeft, const Vertex &topRight)
+: Rectangle(bottomLeft, topRight)
 {
-    if (isQuad(bottomLeft, topRight) &&
-        (doubleEqual(bottomLeft.m_col, topRight.m_col) &&
-         doubleEqual(bottomLeft.m_row, topRight.m_row)))
+    if (!doubleEqual(bottomLeft.m_col, topRight.m_col) &&
+         !doubleEqual(bottomLeft.m_row, topRight.m_row))
     {
-        m_square.getBottomLeft() = bottomLeft;
-        m_square.getTopRight() = topRight;
-    }
-    else
-    {
-        m_square.getBottomLeft() = Vertex(20, 10);
-        m_square.getTopRight() = Vertex(30, 20);
+        m_square = Rectangle(Vertex(20, 10),Vertex(30, 20));  
     }
 }
 // _______________________________________________
@@ -67,11 +59,4 @@ Vertex Square::getCenter() const
 bool Square::scale(double factor)
 {
     return m_square.scale(factor);
-}
-// _________________________________________
-bool Square::isQuad(const Vertex v1, const Vertex v2) const
-{
-    return v1.isHigherThan(v2) &&
-           v1.isToTheRightOf(v2) &&
-           v1.isValid() && v2.isValid();
 }
