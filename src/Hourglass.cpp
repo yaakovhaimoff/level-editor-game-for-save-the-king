@@ -48,7 +48,7 @@ void Hourglass::draw(Board &board) const
 Rectangle Hourglass::getBoundingRectangle() const
 {
     return Rectangle(m_bottomTriangle.getVertex(0),
-                     Vertex(m_topTriangle.getVertex(1)));
+                     Vertex(m_topTriangle.getVertex(0)));
 }
 // ______________________________
 double Hourglass::getArea() const
