@@ -2,7 +2,7 @@
 
 Triangle defLower(Vertex(20, 20), Vertex(30, 20), sqrt(75));
 Triangle defUpper(Vertex(20, 20 + (2 * sqrt(75))), Vertex(30, 20 + 2 * sqrt(75)),
-                             sqrt(75));
+                  sqrt(75));
 
 // ________________________________________
 Hourglass::Hourglass(const Triangle &upper, const Triangle &lower)
@@ -17,8 +17,8 @@ Hourglass::Hourglass(const Triangle &upper, const Triangle &lower)
 Hourglass::Hourglass(const Triangle &lower)
     : m_bottomTriangle(defLower), m_topTriangle(defUpper)
 {
-    Triangle newUpper(Vertex(lower.getVertex(0).m_col, lower.getVertex(0).m_row + 2 * lower.getHeight()),
-                      Vertex(lower.getVertex(1).m_col, lower.getVertex(0).m_row + 2 * lower.getHeight()),
+    Triangle newUpper(Vertex(lower.getVertex(0).m_col, lower.getVertex(0).m_row + (2 * lower.getHeight())),
+                      Vertex(lower.getVertex(1).m_col, lower.getVertex(0).m_row + (2 * lower.getHeight())),
                       -(lower.getHeight()));
 
     if (isHourglass(newUpper, lower))
@@ -75,7 +75,7 @@ bool Hourglass::scale(double factor)
     scaleHourglass(m_topTriangle, factor);
 
     if (factor < 0 || !m_bottomTriangle.getVertex(0).isValid() ||
-     !m_topTriangle.getVertex(1).isValid())
+        !m_topTriangle.getVertex(1).isValid())
     {
         return false;
     }
@@ -110,7 +110,7 @@ bool Hourglass::isLengthSame(const Triangle &upper,
     return doubleEqual(distance(upper.getVertex(0), upper.getVertex(1)),
                        distance(lower.getVertex(0), lower.getVertex(1)));
 }
-// setting the values for the default triangle in case of 
+// setting the values for the default triangle in case of
 // unvalid insert by the user coordinates.
 // ________________________
 void Hourglass::setValues()
