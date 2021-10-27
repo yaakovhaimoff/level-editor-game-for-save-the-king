@@ -36,4 +36,5 @@ private:
                          const Triangle &lower) const;
     bool isUpperValid(Vertex upper[3])const;
     void setValues();
+    void scaleHourglass(Triangle &t, double factor);
 };

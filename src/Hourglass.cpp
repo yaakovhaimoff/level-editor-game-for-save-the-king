@@ -18,7 +18,7 @@ Hourglass::Hourglass(const Triangle &lower)
     : m_bottomTriangle(defLower),
       m_topTriangle(defUpper)
 {
-    Triangle newUpper(Vertex(lower.getVertex(0).m_col, 2* lower.getHeight()),
+    Triangle newUpper(Vertex(lower.getVertex(0).m_col, 2 * lower.getHeight()),
                       Vertex(lower.getVertex(1).m_col, 2 * lower.getHeight()),
                       -(lower.getHeight()));
     if (isHourglass(newUpper, lower))
@@ -48,19 +48,17 @@ void Hourglass::draw(Board &board) const
 Rectangle Hourglass::getBoundingRectangle() const
 {
     return Rectangle(m_bottomTriangle.getVertex(0),
-                     Vertex(m_topTriangle.getVertex(1)));
+                     m_topTriangle.getVertex(1));
 }
 // ______________________________
 double Hourglass::getArea() const
 {
-    return m_bottomTriangle.getArea() +
-           m_topTriangle.getArea();
+    return 2 * m_bottomTriangle.getArea();
 }
 // ___________________________________
 double Hourglass::getPerimeter() const
 {
-    return m_bottomTriangle.getPerimeter() +
-           m_topTriangle.getPerimeter();
+    return 2 * m_bottomTriangle.getPerimeter();
 }
 // to get the center i'll calculate the average of cols between
 // both of the triangle, and the average beetween the rows as well.
@@ -72,15 +70,20 @@ Vertex Hourglass::getCenter() const
 // _________________________________
 bool Hourglass::scale(double factor)
 {
-    return m_bottomTriangle.scale(factor + m_bottomTriangle.getCenter().m_row) &&
-           m_topTriangle.scale(factor + m_topTriangle.getCenter().m_row);
+    scaleHourglass(m_bottomTriangle, factor);
+    scaleHourglass(m_topTriangle, factor);
+    if (factor < 0 || !isHourglass(m_bottomTriangle, m_topTriangle))
+    {
+        return false;
+    }
+    return true;
 }
 // ______________________________________________
 bool Hourglass::isHourglass(const Triangle &upper,
                             const Triangle &lower) const
 {
-    return isUpperAndLower(upper, lower) &&
-           isVertexShared(upper, lower) && isLengthSame(upper, lower);
+    return isUpperAndLower(upper, lower) && isVertexShared(upper, lower) &&
+           isLengthSame(upper, lower);
 }
 // __________________________________________________
 bool Hourglass::isUpperAndLower(const Triangle &upper,
@@ -108,4 +111,17 @@ void Hourglass::setValues()
 {
     m_bottomTriangle = defLower;
     m_topTriangle = defUpper;
+}
+void Hourglass::scaleHourglass(Triangle &t, double factor)
+{
+    Vertex newV0, newV1, newV2, center = getCenter();
+    newV0 = Vertex((center.m_col - (center.m_col - t.getVertex(0).m_col) * factor),
+                   (center.m_row - (center.m_row - t.getVertex(0).m_row) * factor));
+    newV1 = Vertex((center.m_col - (center.m_col - t.getVertex(1).m_col) * factor),
+                   (center.m_row - (center.m_row - t.getVertex(1).m_row) * factor));
+    newV2 = Vertex((center.m_col - (center.m_col - t.getVertex(2).m_col) * factor),
+                   (center.m_row - (center.m_row - t.getVertex(2).m_row) * factor));
+    t.getVertex(0) = newV0;
+    t.getVertex(1) = newV1;
+    t.getVertex(2) = newV2;
 }

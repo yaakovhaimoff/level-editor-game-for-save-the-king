@@ -20,7 +20,7 @@ Triangle::Triangle(const Vertex &v0, const Vertex &v1, double height)
     v2.m_row = (v1.m_row + height);
     // checking if the  new vertcies form a triangle
     // check hourGlass
-    if (isTriangle(v0, v1, v2) && sameCol(v0, v1) && isTriangle(v0, v1, v2))
+    if (isTriangle(v0, v1, v2))
     {
         m_triangleVertex[0] = v0;
         m_triangleVertex[1] = v1;
@@ -123,7 +123,8 @@ Vertex Triangle::getRightVertexForBounding() const
 // _______________________________________________________________________________
 bool Triangle::isTriangle(const Vertex v0, const Vertex v1, const Vertex v2) const
 {
-    return isTriangleLengthValid(v0, v1, v2) && isTriangleVertexValid(v0, v1, v2);
+    return isTriangleLengthValid(v0, v1, v2) && isTriangleVertexValid(v0, v1, v2) &&
+           sameCol(v0, v1);
 }
 // _________________________________________________________________________________________
 bool Triangle::isTriangleVertexValid(const Vertex v0, const Vertex v1, const Vertex v2) const
