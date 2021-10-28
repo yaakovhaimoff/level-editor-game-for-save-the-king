@@ -15,16 +15,13 @@ Hourglass::Hourglass(const Triangle &upper, const Triangle &lower)
 }
 // ________________________________________
 Hourglass::Hourglass(const Triangle &lower)
-    : m_bottomTriangle(defLower), m_topTriangle(defUpper)
-{
-    Triangle newUpper(Vertex(lower.getVertex(0).m_col, lower.getVertex(0).m_row + lower.getHeight()),
+    : m_bottomTriangle(lower), m_topTriangle(Vertex(lower.getVertex(0).m_col, lower.getVertex(0).m_row + lower.getHeight()),
                       Vertex(lower.getVertex(1).m_col, lower.getVertex(0).m_row + lower.getHeight()),
-                      -(lower.getHeight()));
-
-    if (isHourglass(newUpper, lower))
+                      -(lower.getHeight()))
+{
+    if (!isHourglass(m_topTriangle, m_bottomTriangle))
     {
-        m_topTriangle = newUpper;
-        m_bottomTriangle = lower;
+        setValues();
     }
 }
 // ________________________________
