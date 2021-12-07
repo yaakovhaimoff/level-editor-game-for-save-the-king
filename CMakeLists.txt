@@ -15,7 +15,7 @@ if (MSVC)
     add_compile_options (/W4 /permissive- /Zc:externConstexpr /Zc:inline /analyze)
 endif ()
 
-add_executable (${CMAKE_PROJECT_NAME} WIN32)
+add_executable (${CMAKE_PROJECT_NAME})
 
 add_subdirectory (include)
 add_subdirectory (src)
