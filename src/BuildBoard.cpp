@@ -35,5 +35,5 @@ void BuildBoard::printMenuBoard(sf::RenderWindow& window) const
 //_________________________________________________________
 void BuildBoard::printObjectsBoard(sf::RenderWindow&) const
 {
-
+	 
 }

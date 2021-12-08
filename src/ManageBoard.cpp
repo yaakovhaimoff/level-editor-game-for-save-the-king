@@ -35,8 +35,8 @@ void ManageBoard::getBoardSizeFromUser()
 	std::cin >> rows >> cols;
 	m_board = BuildBoard(rows, cols);
 }
-//_____________________________________________________
-void ManageBoard::printWindow(sf::RenderWindow& window)
+//___________________________________________________________
+void ManageBoard::printWindow(sf::RenderWindow& window)const
 {
 	m_board.printDefaultBoard(window);
 	m_board.printMenuBoard(window);

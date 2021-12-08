@@ -11,7 +11,7 @@ public:
 	ManageBoard();
 	void runBoard();
 	void getBoardSizeFromUser();
-	void printWindow(sf::RenderWindow&);
+	void printWindow(sf::RenderWindow&)const;
 
 
 private:
