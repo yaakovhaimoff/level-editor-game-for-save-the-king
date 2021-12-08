@@ -14,6 +14,10 @@ const int SIDE_WIDTH = 135;
 const int SIDE_LENGTH = 180;
 const int MenuBar = 14;
 
+//const char* FILES_NAMES[] = { "king.png", "mage.png", "warrior.png", "thief.png", "crown.png", 
+//							"gate.png", "fire.png", "key.png", "monster.png", "teleport.png",
+//							"brickWall.png", "eraser.png", "newBoard.png", "saveBoard.png"};
+// 
 // the player tools in the games
 enum playersKeys
 {
