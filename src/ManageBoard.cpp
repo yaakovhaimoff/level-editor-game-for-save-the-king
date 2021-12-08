@@ -1,17 +1,17 @@
 #include "ManageBoard.h"
 
-//ManageBoard::ManageBoard()
-//{
-//
-//}
+ManageBoard::ManageBoard()
+{
+	this->getBoardSizeFromUser();
+}
 //__________________________
 void ManageBoard::runBoard()
 {
-	auto window = sf::RenderWindow(sf::VideoMode(900, 900), "Save the king");
+	auto window = sf::RenderWindow(sf::VideoMode(1100, 1100), "Save the king");
 
 	while (window.isOpen())
 	{
-		window.clear();
+		window.clear(BACKGROUND_COLOR);
 		this->printWindow(window);
 		window.display();
 

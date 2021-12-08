@@ -7,7 +7,7 @@
 class BuildBoard
 {
 public:
-	BuildBoard();
+	BuildBoard()=default;
 	BuildBoard(int, int);
 	void printDefaultBoard(sf::RenderWindow&) const;
 	void printObjectsBoard(sf::RenderWindow&) const;

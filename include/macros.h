@@ -7,6 +7,7 @@ const int numOfPlayers = 4;
 
 const auto BOARD_COLOR = sf::Color(199, 220, 227);
 const auto MENU_COLOR = sf::Color(214, 217, 213);
+const auto BACKGROUND_COLOR = sf::Color(217, 255, 255);
 const int CELL = 60;
 const int SPACE = 3;
 const int SIDE_WIDTH = 135;
