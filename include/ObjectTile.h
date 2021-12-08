@@ -1,7 +1,9 @@
+#pragma once
+
+#include <SFML/Graphics.hpp>
+
 #include <vector>
 #include <string>
-
-#include "BoardLocation.h"
 
 
 class ObjectTile
@@ -10,8 +12,9 @@ public:
     void showShape()const;
 
 private:
-    std::string texture;
-    std::string shape;
-    std::vector <BoradLocation>locations;
+    std::string m_textureFile;
+    char m_key;
+    sf::Texture m_texture;
+    std::vector <sf::Vector2f> m_locations;
 
 };

@@ -14,8 +14,8 @@ void BuildBoard::printDefaultBoard(sf::RenderWindow& window) const
 	{
 		for (int col = 0; col < m_width; col++)
 		{
-			objectShape.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * j,
-				SIDE_LENGTH + (CELL + SPACE) * i));
+			objectShape.setPosition(sf::Vector2f((float)(SIDE_WIDTH + (CELL + SPACE) * col),
+				(float)(SIDE_LENGTH + (CELL + SPACE) * row)));
 			window.draw(objectShape);
 		}
 	}
@@ -28,7 +28,7 @@ void BuildBoard::printMenuBoard(sf::RenderWindow& window) const
 
 	for(int row = 0; row < MenuBar; row++)
 	{
-		menuButton.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * row));
+		menuButton.setPosition(sf::Vector2f((float)(SIDE_WIDTH + (CELL + SPACE) * row), (float)(SPACE)));
 		window.draw(menuButton);
 	}
 }
