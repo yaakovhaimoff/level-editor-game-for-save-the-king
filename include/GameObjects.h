@@ -12,6 +12,7 @@ public:
     GameObjects(std::string, int, int, char);
     void showShape(sf::RenderWindow&)const;
     void setLocation(sf::Vector2f&);
+    int getAmountOfLocation()const;
 
 
 private:

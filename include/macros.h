@@ -15,6 +15,7 @@ const int SPACE = 3;
 const int SIDE_WIDTH = 135;
 const int SIDE_LENGTH = 180;
 const int MenuBar = 14;
+const int PLAYER_EXIST = 2;
 
 const std::string FILES_NAMES[] = { "king.png", "mage.png", "thief.png", "warrior.png", "crown.png", "gate.png", "fire.png",
 										"key.png", "monster.png", "teleport.png", "brickWall.png", "eraser.png",

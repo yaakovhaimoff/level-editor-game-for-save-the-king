@@ -22,3 +22,7 @@ void GameObjects::setLocation(sf::Vector2f& location)
 {
 	m_locations.push_back(location);
 }
+int GameObjects::getAmountOfLocation()const
+{
+	return m_locations.size();
+}

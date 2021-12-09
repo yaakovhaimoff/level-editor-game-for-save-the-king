@@ -40,6 +40,7 @@ void ManageBoard::runBoard()
 		}
 	}
 }
+
 //______________________________________
 void ManageBoard::getBoardSizeFromUser()
 {
@@ -58,19 +59,23 @@ void ManageBoard::addObject(int menuObject, sf::Vector2f& locationPressed)
 		switch (menuObject)
 		{
 		case KING_BOARD_OBJECT:
-			m_king.setLocation(locationPressed);
+			if (m_king.getAmountOfLocation() < PLAYER_EXIST)
+				m_king.setLocation(locationPressed);
 			break;
 
 		case MAGE_BOARD_OBJECT:
-			m_mage.setLocation(locationPressed);
+			if (m_mage.getAmountOfLocation() < PLAYER_EXIST)
+				m_mage.setLocation(locationPressed);
 			break;
 
 		case WARRIOR_BOARD_OBJECT:
-			m_warrior.setLocation(locationPressed);
+			if (m_warrior.getAmountOfLocation() < PLAYER_EXIST)
+				m_warrior.setLocation(locationPressed);
 			break;
 
 		case THIEF_BOARD_OBJECT:
-			m_thief.setLocation(locationPressed);
+			if (m_thief.getAmountOfLocation() < PLAYER_EXIST)
+				m_thief.setLocation(locationPressed);
 			break;
 
 		case WALL_BOARD_OBJECT:

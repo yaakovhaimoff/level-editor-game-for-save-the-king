@@ -35,10 +35,11 @@ void BuildBoard::printMenuBoard(sf::RenderWindow& window) const
 //____________________________________________________________________________________________
 bool BuildBoard::handleClickInMenuBar(const sf::Vector2f& buttonPressedOnBoard, int& location)
 {
-	sf::RectangleShape menuBar;
+	sf::RectangleShape menuBar({60, 60});
 	for (int row = 0; row < MenuBar; row++)
 	{
 		menuBar.setPosition(sf::Vector2f((CELL + SPACE) * row, SPACE));
+		
 		if (menuBar.getGlobalBounds().contains(buttonPressedOnBoard))
 		{
 			location = row;
@@ -52,7 +53,7 @@ bool BuildBoard::handleClickInMenuBar(const sf::Vector2f& buttonPressedOnBoard, 
 //_____________________________________________________________________
 bool BuildBoard::handleClickOnBoard(sf::Vector2f& buttonPressedOnBoard)
 {
-	sf::RectangleShape board;
+	sf::RectangleShape board({ 60, 60 });
 	for (int row = 0; row < m_length; row++)
 	{
 		for (int col = 0; col < m_width; col++)
