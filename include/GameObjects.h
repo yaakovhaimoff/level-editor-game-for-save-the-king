@@ -9,13 +9,14 @@
 class GameObjects
 {
 public:
-    GameObjects(std::string);
+    GameObjects(std::string, int, int, char);
     void showShape(sf::RenderWindow&)const;
     void setLocation(const int, const int);
 
 
 private:
-    std::string m_textureFile;
+    char m_key;
+    sf::Texture m_textureFile;
     std::vector <sf::Vector2f> m_locations;
 
 };

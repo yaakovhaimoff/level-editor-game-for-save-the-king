@@ -1,12 +1,36 @@
 #pragma once 
 
 #include "GameObjects.h"
+#include "macros.h"
 
-class PlayerObjects : public GameObjects
+//____________________________________
+class KingObject : public GameObjects
 {
 public:
-	PlayerObjects();
+	KingObject();
+	
+};
 
-private:
-	std::vector <sf::Vector2f> m_locations;
+//____________________________________
+class MageObject : public GameObjects
+{
+public:
+	MageObject();
+
+};
+
+//______________________________________
+class WarriorObject : public GameObjects
+{
+public:
+	WarriorObject();
+
+};
+
+//____________________________________
+class ThiefObject : public GameObjects
+{
+public:
+	ThiefObject();
+
 };

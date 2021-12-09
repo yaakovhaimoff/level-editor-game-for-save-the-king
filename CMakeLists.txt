@@ -18,6 +18,7 @@ endif ()
 add_executable (${CMAKE_PROJECT_NAME})
 
 add_subdirectory (include)
+add_subdirectory (rcs)
 add_subdirectory (src)
 
 set (SFML_STATIC_LIBRARIES TRUE)
