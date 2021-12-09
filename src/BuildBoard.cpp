@@ -1,7 +1,7 @@
 #include "BuildBoard.h"
 
 //______________________________________________________________
-BuildBoard::BuildBoard(int length, int width): m_length(length),
+BuildBoard::BuildBoard(int length, int width) : m_length(length),
 m_width(width)
 {}
 //________________________________________________________________
@@ -14,8 +14,8 @@ void BuildBoard::printDefaultBoard(sf::RenderWindow& window) const
 	{
 		for (int col = 0; col < m_width; col++)
 		{
-			objectShape.setPosition(sf::Vector2f((float)(SIDE_WIDTH + (CELL + SPACE) * col),
-				(float)(SIDE_LENGTH + (CELL + SPACE) * row)));
+			objectShape.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
+				SIDE_LENGTH + (CELL + SPACE) * row));
 			window.draw(objectShape);
 		}
 	}
@@ -26,14 +26,46 @@ void BuildBoard::printMenuBoard(sf::RenderWindow& window) const
 	auto menuButton = sf::RectangleShape({ 60, 60 });
 	menuButton.setFillColor(MENU_COLOR);
 
-	for(int row = 0; row < MenuBar; row++)
+	for (int row = 0; row < MenuBar; row++)
 	{
-		menuButton.setPosition(sf::Vector2f((float)(SIDE_WIDTH + (CELL + SPACE) * row), (float)(SPACE)));
+		menuButton.setPosition(sf::Vector2f((CELL + SPACE) * row, SPACE));
 		window.draw(menuButton);
 	}
 }
-//_________________________________________________________
-void BuildBoard::printObjectsBoard(sf::RenderWindow&) const
+//____________________________________________________________________________________________
+bool BuildBoard::handleClickInMenuBar(const sf::Vector2f& buttonPressedOnBoard, int& location)
 {
-	 
+	sf::RectangleShape menuBar;
+	for (int row = 0; row < MenuBar; row++)
+	{
+		menuBar.setPosition(sf::Vector2f((CELL + SPACE) * row, SPACE));
+		if (menuBar.getGlobalBounds().contains(buttonPressedOnBoard))
+		{
+			location = row;
+			return true;
+		}
+	}
+	location = DO_NOTHING;
+	return false;
+}
+
+//_____________________________________________________________________
+bool BuildBoard::handleClickOnBoard(sf::Vector2f& buttonPressedOnBoard)
+{
+	sf::RectangleShape board;
+	for (int row = 0; row < m_length; row++)
+	{
+		for (int col = 0; col < m_width; col++)
+		{
+			board.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
+				SIDE_LENGTH + (CELL + SPACE) * row));
+			if (board.getGlobalBounds().contains(buttonPressedOnBoard))
+			{
+				buttonPressedOnBoard = sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
+					SIDE_LENGTH + (CELL + SPACE) * row);
+				return true;
+			}
+		}
+	}
+	return false;
 }

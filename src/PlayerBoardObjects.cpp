@@ -3,19 +3,19 @@
 //______________________
 KingObject::KingObject()
 	: GameObjects("king.png",
-		SIDE_WIDTH + (CELL + SPACE) * 0, SPACE, KING) {}
+		(CELL + SPACE)* KING_BOARD_OBJECT, SPACE, KING) {}
 
 //______________________
 MageObject::MageObject()
 	: GameObjects("mage.png",
-		SIDE_WIDTH + (CELL + SPACE) * 1, SPACE, MAGE) {}
+		(CELL + SPACE)* MAGE_BOARD_OBJECT, SPACE, MAGE) {}
 
 //____________________________
 WarriorObject::WarriorObject()
 	: GameObjects("warrior.png",
-		SIDE_WIDTH + (CELL + SPACE) * 2, SPACE, WARRIOR) {}
+		(CELL + SPACE)* WARRIOR_BOARD_OBJECT, SPACE, WARRIOR) {}
 
 //________________________
 ThiefObject::ThiefObject()
 	: GameObjects("thief.png",
-		SIDE_WIDTH + (CELL + SPACE) * 3, SPACE, THIEF) {}
+		(CELL + SPACE)* THIEF_BOARD_OBJECT, SPACE, THIEF) {}

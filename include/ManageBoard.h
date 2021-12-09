@@ -15,11 +15,9 @@ class ManageBoard
 public:
 	ManageBoard();
 	void runBoard();
-	void setMenuBar(sf::RenderWindow&);
 	void printWindow(sf::RenderWindow&)const;
 	void printObjects(sf::RenderWindow&)const;
-
-
+	void addObject(int, sf::Vector2f&);
 
 private:
 	void getBoardSizeFromUser();

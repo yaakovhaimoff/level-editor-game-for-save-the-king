@@ -11,7 +11,7 @@ class GameObjects
 public:
     GameObjects(std::string, int, int, char);
     void showShape(sf::RenderWindow&)const;
-    void setLocation(const int, const int);
+    void setLocation(sf::Vector2f&);
 
 
 private:

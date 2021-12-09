@@ -18,7 +18,7 @@ void GameObjects::showShape(sf::RenderWindow& window)const
 		window.draw(sprite);
 	}
 }
-void GameObjects::setLocation(const int x, const int y)
+void GameObjects::setLocation(sf::Vector2f& location)
 {
-	m_locations.push_back(sf::Vector2f(x, y));
+	m_locations.push_back(location);
 }

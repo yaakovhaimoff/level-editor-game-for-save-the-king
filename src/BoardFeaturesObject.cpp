@@ -3,14 +3,14 @@
 //________________________
 EraseObject::EraseObject()
 	: GameObjects("eraser.png",
-		SIDE_WIDTH + (CELL + SPACE) * 11, SPACE, ERASE) {}
+		(CELL + SPACE)* ERASE_BOARD_OBJECT, SPACE, ERASE) {}
 
 //______________________________
 NewBoardObject::NewBoardObject()
 	: GameObjects("newBoard.png",
-		SIDE_WIDTH + (CELL + SPACE) * 12, SPACE, NEW_BOARD) {}
+		(CELL + SPACE)* NEW_BOARD_BOARD_OBJECT, SPACE, NEW_BOARD) {}
 
 //_______________________________
 SaveBoardObject::SaveBoardObject()
 	: GameObjects("saveBoard.png",
-		SIDE_WIDTH + (CELL + SPACE) * 13, SPACE, SAVE_BOARD) {}
+		(CELL + SPACE)* SAVE_BOARD_BOARD_OBJECT, SPACE, SAVE_BOARD) {}
