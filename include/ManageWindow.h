@@ -17,8 +17,10 @@ public:
 	void runBoard();
 	void printWindow(sf::RenderWindow&)const;
 	void printObjects(sf::RenderWindow&)const;
+	void checkButtonPressedOnMenu(int, sf::Vector2f&);
+	bool checkIfIsObjectOnBoard(int, sf::Vector2f&);
 	void addObject(int, sf::Vector2f&);
-	bool checkIfObjectIsOnBoard(sf::Vector2f&);
+	void eraseBoard();
 
 private:
 	void getBoardSizeFromUser();

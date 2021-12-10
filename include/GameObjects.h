@@ -5,6 +5,7 @@
 #include <vector>
 #include <string>
 
+#include "macros.h"
 
 class GameObjects
 {
@@ -13,9 +14,9 @@ public:
     void showShape(sf::RenderWindow&)const;
     void setLocation(sf::Vector2f&);
     int getAmountOfLocation()const;
-    bool boardObjectExists(sf::Vector2f&);
-
-
+    bool boardObjectExists(int, sf::Vector2f&);
+    void eraseAllLocation();
+    void eraseLocation(sf::Vector2f&);
 
 private:
     char m_key;

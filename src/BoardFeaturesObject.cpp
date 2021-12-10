@@ -8,9 +8,9 @@ EraseObject::EraseObject()
 //______________________________
 NewBoardObject::NewBoardObject()
 	: GameObjects("newBoard.png",
-		(CELL + SPACE)* NEW_BOARD_BOARD_OBJECT, SPACE, NEW_BOARD) {}
+		(CELL + SPACE)* NEW_BOARD_OBJECT, SPACE, NEW_BOARD) {}
 
 //_______________________________
 SaveBoardObject::SaveBoardObject()
 	: GameObjects("saveBoard.png",
-		(CELL + SPACE)* SAVE_BOARD_BOARD_OBJECT, SPACE, SAVE_BOARD) {}
+		(CELL + SPACE)* SAVE_BOARD_OBJECT, SPACE, SAVE_BOARD) {}

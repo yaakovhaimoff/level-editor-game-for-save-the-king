@@ -5,6 +5,15 @@ ManageWindow::ManageWindow()
 {
 	this->getBoardSizeFromUser();
 }
+//______________________________________
+void ManageWindow::getBoardSizeFromUser()
+{
+	int rows, cols;
+	std::cout << "Enter the size for the borad,\n";
+	std::cout << "rows and cols\n";
+	std::cin >> rows >> cols;
+	m_board = ManageBoard(rows, cols);
+}
 //__________________________
 void ManageWindow::runBoard()
 {
@@ -33,28 +42,39 @@ void ManageWindow::runBoard()
 				{
 					menuButton = buttonPressed;
 				}
-				this->addObject(menuButton, location);
+				this->checkButtonPressedOnMenu(menuButton, location);
 				break;
 			}
 			}
 		}
 	}
 }
-
-//______________________________________
-void ManageWindow::getBoardSizeFromUser()
+//_________________________________________________________________________________
+void ManageWindow::checkButtonPressedOnMenu(int menuButton, sf::Vector2f& location)
 {
-	int rows, cols;
-	std::cout << "Enter the size for the borad,\n";
-	std::cout << "rows and cols\n";
-	std::cin >> rows >> cols;
-	m_board = ManageBoard(rows, cols);
+	switch (menuButton)
+	{
+	case NEW_BOARD_OBJECT:
+		eraseBoard();
+		break;
+
+	case SAVE_BOARD_OBJECT:
+		break;
+
+	case ERASE_BOARD_OBJECT:
+		if (m_board.handleClickOnBoard(location))
+			this->checkIfIsObjectOnBoard(ERASE_BOARD_OBJECT, location);
+			break;
+
+	default:
+		this->addObject(menuButton, location);
+			break;
+	}
 }
 //_________________________________________________________________________
 void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 {
-	sf::Vector2f boardLocation;
-	if (m_board.handleClickOnBoard(locationPressed) && !checkIfObjectIsOnBoard(locationPressed))
+	if (m_board.handleClickOnBoard(locationPressed) && !this->checkIfIsObjectOnBoard(menuObject, locationPressed))
 	{
 		switch (menuObject)
 		{
@@ -113,32 +133,48 @@ void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 	}
 }
 //___________________________________________________________________________
-bool ManageWindow::checkIfObjectIsOnBoard(sf::Vector2f& buttonPressedOnBoard)
+bool ManageWindow::checkIfIsObjectOnBoard(int menuButton, sf::Vector2f& buttonPressedOnBoard)
 {
-	if (m_king.boardObjectExists(buttonPressedOnBoard))
+	// if found the location in one of the objects, will not continue checking the other objects
+	if (m_king.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_mage.boardObjectExists(buttonPressedOnBoard))
+	if (m_mage.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_warrior.boardObjectExists(buttonPressedOnBoard))
+	if (m_warrior.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_thief.boardObjectExists(buttonPressedOnBoard))
+	if (m_thief.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_wall.boardObjectExists(buttonPressedOnBoard))
+	if (m_wall.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_crown.boardObjectExists(buttonPressedOnBoard))
+	if (m_crown.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_fire.boardObjectExists(buttonPressedOnBoard))
+	if (m_fire.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_gate.boardObjectExists(buttonPressedOnBoard))
+	if (m_gate.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_key.boardObjectExists(buttonPressedOnBoard))
+	if (m_key.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_monster.boardObjectExists(buttonPressedOnBoard))
+	if (m_monster.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
-	if (m_teleport.boardObjectExists(buttonPressedOnBoard))
+	if (m_teleport.boardObjectExists(menuButton, buttonPressedOnBoard))
 		return true;
 
 	return false;
+}
+//______________________________
+void ManageWindow::eraseBoard()
+{
+	m_king.eraseAllLocation();
+	m_mage.eraseAllLocation();
+	m_warrior.eraseAllLocation();
+	m_thief.eraseAllLocation();
+	m_wall.eraseAllLocation();
+	m_crown.eraseAllLocation();
+	m_fire.eraseAllLocation();
+	m_gate.eraseAllLocation();
+	m_key.eraseAllLocation();
+	m_monster.eraseAllLocation();
+	m_teleport.eraseAllLocation();
 }
 //__________________________________________________________
 void ManageWindow::printWindow(sf::RenderWindow& window)const
