@@ -4,6 +4,16 @@
 ManageBoard::ManageBoard(int length, int width) : m_length(length),
 m_width(width)
 {}
+//___________________________________
+int ManageBoard::getBoardLength()const
+{
+	return m_length;
+}
+//___________________________________
+int ManageBoard::getBoardWidth()const
+{
+	return m_width;
+}
 //________________________________________________________________
 void ManageBoard::printDefaultBoard(sf::RenderWindow& window) const
 {

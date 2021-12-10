@@ -64,3 +64,17 @@ void GameObjects::eraseLocation(sf::Vector2f& objectOnBoard)
 			break;
 		}
 }
+//______________________________________________________________________________________
+void GameObjects::saveBoardObjectsToVector(std::vector<std::vector<char>>& vectorToSave)
+{
+	int i, j;
+	for (int row = 1; row < m_locations.size(); row++)
+	{
+		i = (m_locations[row].y-SIDE_WIDTH) / (CELL + SPACE);
+		j = (m_locations[row].x-SIDE_LENGTH) / (CELL + SPACE);
+		vectorToSave[i][j] = m_key;
+	}
+}
+
+//objectShape.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
+//	SIDE_LENGTH + (CELL + SPACE) * row));

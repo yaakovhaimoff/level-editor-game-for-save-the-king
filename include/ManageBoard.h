@@ -9,6 +9,8 @@ class ManageBoard
 public:
 	ManageBoard() = default;
 	ManageBoard(int, int);
+	int getBoardLength()const;
+	int getBoardWidth()const;
 	void printDefaultBoard(sf::RenderWindow&) const;
 	void printMenuBoard(sf::RenderWindow&) const;
 	bool handleClickInMenuBar(const sf::Vector2f&, int&);

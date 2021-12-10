@@ -17,6 +17,7 @@ public:
     bool boardObjectExists(int, sf::Vector2f&);
     void eraseAllLocation();
     void eraseLocation(sf::Vector2f&);
+    void saveBoardObjectsToVector(std::vector<std::vector<char>>&);
 
 private:
     char m_key;

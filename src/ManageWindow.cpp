@@ -55,10 +55,11 @@ void ManageWindow::checkButtonPressedOnMenu(int menuButton, sf::Vector2f& locati
 	switch (menuButton)
 	{
 	case NEW_BOARD_OBJECT:
-		eraseBoard();
+		this->eraseBoard();
 		break;
 
 	case SAVE_BOARD_OBJECT:
+		this->saveBoard();
 		break;
 
 	case ERASE_BOARD_OBJECT:
@@ -200,4 +201,46 @@ void ManageWindow::printObjects(sf::RenderWindow& window)const
 	m_erase.showShape(window);
 	m_newBoard.showShape(window);
 	m_saveBoard.showShape(window);
+}
+//_____________________________
+void ManageWindow::saveBoard()
+{
+	std::ofstream file;
+	file.open("Board.txt");
+	std::vector<std::vector<char>> boardToSave;
+	this->intializeVectorToSaveBoard(boardToSave);
+
+	m_king.saveBoardObjectsToVector(boardToSave);
+	m_mage.saveBoardObjectsToVector(boardToSave);
+	m_warrior.saveBoardObjectsToVector(boardToSave);
+	m_thief.saveBoardObjectsToVector(boardToSave);
+	m_wall.saveBoardObjectsToVector(boardToSave);
+	m_crown.saveBoardObjectsToVector(boardToSave);
+	m_fire.saveBoardObjectsToVector(boardToSave);
+	m_gate.saveBoardObjectsToVector(boardToSave);
+	m_key.saveBoardObjectsToVector(boardToSave);
+	m_monster.saveBoardObjectsToVector(boardToSave);
+	m_teleport.saveBoardObjectsToVector(boardToSave);
+
+	for (int i = 0; i < m_board.getBoardLength(); i++)
+	{
+		for (int j = 0; j < m_board.getBoardWidth(); j++)
+		{
+			file << boardToSave[i][j];
+		}
+		file << "\n";
+	}
+}
+void ManageWindow::intializeVectorToSaveBoard(std::vector<std::vector<char>>& boardToSave)
+{
+	int rows = m_board.getBoardLength();
+	int cols = m_board.getBoardWidth();
+	boardToSave.resize(rows, std::vector<char>(cols));
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+		{
+			boardToSave[i][j] = ' ';
+		}
+	}
 }

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <fstream>
+#include <vector>
 #include <SFML/Graphics.hpp>
 
 #include "ManageBoard.h"
@@ -21,6 +23,8 @@ public:
 	bool checkIfIsObjectOnBoard(int, sf::Vector2f&);
 	void addObject(int, sf::Vector2f&);
 	void eraseBoard();
+	void saveBoard();
+	void intializeVectorToSaveBoard(std::vector<std::vector<char>>&);
 
 private:
 	void getBoardSizeFromUser();
