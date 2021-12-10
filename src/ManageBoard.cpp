@@ -1,149 +1,72 @@
 #include "ManageBoard.h"
 
-//________________________
-ManageBoard::ManageBoard()
+//______________________________________________________________
+ManageBoard::ManageBoard(int length, int width) : m_length(length),
+m_width(width)
+{}
+//________________________________________________________________
+void ManageBoard::printDefaultBoard(sf::RenderWindow& window) const
 {
-	this->getBoardSizeFromUser();
-}
-//__________________________
-void ManageBoard::runBoard()
-{
-	int buttonPressed, menuButton = DO_NOTHING;
-	auto window = sf::RenderWindow(sf::VideoMode(881, 900), "Save the king");
+	auto objectShape = sf::RectangleShape({ 60, 60 });
+	objectShape.setFillColor(BOARD_COLOR);
 
-	while (window.isOpen())
+	for (int row = 0; row < m_length; row++)
 	{
-		window.clear(BACKGROUND_COLOR);
-		this->printWindow(window);
-		window.display();
-
-		if (auto event = sf::Event{}; window.waitEvent(event))
+		for (int col = 0; col < m_width; col++)
 		{
-			switch (event.type)
-			{
-			case sf::Event::Closed:
-				window.close();
-				break;
-			case sf::Event::MouseButtonReleased:
-			{
-				// getting the location of where the mouse was pressed
-				auto location = window.mapPixelToCoords(
-					{ event.mouseButton.x, event.mouseButton.y });
-				if (m_board.handleClickInMenuBar(location, buttonPressed))
-				{
-					menuButton = buttonPressed;
-				}
-				this->addObject(menuButton, location);
-				break;
-			}
-			}
+			objectShape.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
+				SIDE_LENGTH + (CELL + SPACE) * row));
+			window.draw(objectShape);
 		}
 	}
 }
+//_____________________________________________________________
+void ManageBoard::printMenuBoard(sf::RenderWindow& window) const
+{
+	auto menuButton = sf::RectangleShape({ 60, 60 });
+	menuButton.setFillColor(MENU_COLOR);
 
-//______________________________________
-void ManageBoard::getBoardSizeFromUser()
-{
-	int rows, cols;
-	std::cout << "Enter the size for the borad,\n";
-	std::cout << "rows and cols\n";
-	std::cin >> rows >> cols;
-	m_board = BuildBoard(rows, cols);
-}
-//_________________________________________
-void ManageBoard::addObject(int menuObject, sf::Vector2f& locationPressed)
-{
-	sf::Vector2f boardLocation;
-	if (m_board.handleClickOnBoard(locationPressed))
+	for (int row = 0; row < MenuBar; row++)
 	{
-		switch (menuObject)
-		{
-		case KING_BOARD_OBJECT:
-			if (m_king.getAmountOfLocation() < PLAYER_EXIST)
-				m_king.setLocation(locationPressed);
-			break;
-
-		case MAGE_BOARD_OBJECT:
-			if (m_mage.getAmountOfLocation() < PLAYER_EXIST)
-				m_mage.setLocation(locationPressed);
-			break;
-
-		case WARRIOR_BOARD_OBJECT:
-			if (m_warrior.getAmountOfLocation() < PLAYER_EXIST)
-				m_warrior.setLocation(locationPressed);
-			break;
-
-		case THIEF_BOARD_OBJECT:
-			if (m_thief.getAmountOfLocation() < PLAYER_EXIST)
-				m_thief.setLocation(locationPressed);
-			break;
-
-		case WALL_BOARD_OBJECT:
-			m_wall.setLocation(locationPressed);
-			break;
-
-		case CROWN_BOARD_OBJECT:
-			m_crown.setLocation(locationPressed);
-			break;
-
-		case FIRE_BOARD_OBJECT:
-			m_fire.setLocation(locationPressed);
-			break;
-
-		case GATE_BOARD_OBJECT:
-			m_gate.setLocation(locationPressed);
-			break;
-
-		case GATE_KEY_BOARD_OBJECT:
-			m_key.setLocation(locationPressed);
-			break;
-
-		case MONSTER_BOARD_OBJECT:
-			m_monster.setLocation(locationPressed);
-			break;
-
-		case TELEPORT_BOARD_OBJECT:
-			m_teleport.setLocation(locationPressed);
-			break;
-
-		case ERASE_BOARD_OBJECT:
-			m_erase.setLocation(locationPressed);
-			break;
-
-		case NEW_BOARD_BOARD_OBJECT:
-			m_newBoard.setLocation(locationPressed);
-			break;
-
-		case SAVE_BOARD_BOARD_OBJECT:
-			m_saveBoard.setLocation(locationPressed);
-			break;
-		default:
-			break;
-		}
+		menuButton.setPosition(sf::Vector2f((CELL + SPACE) * row, SPACE));
+		window.draw(menuButton);
 	}
 }
-//__________________________________________________________
-void ManageBoard::printWindow(sf::RenderWindow& window)const
+//____________________________________________________________________________________________
+bool ManageBoard::handleClickInMenuBar(const sf::Vector2f& buttonPressedOnBoard, int& location)
 {
-	m_board.printDefaultBoard(window);
-	m_board.printMenuBoard(window);
-	this->printObjects(window);
+	sf::RectangleShape menuBar({60, 60});
+	for (int row = 0; row < MenuBar; row++)
+	{
+		menuBar.setPosition(sf::Vector2f((CELL + SPACE) * row, SPACE));
+		
+		if (menuBar.getGlobalBounds().contains(buttonPressedOnBoard))
+		{
+			location = row;
+			return true;
+		}
+	}
+	location = DO_NOTHING;
+	return false;
 }
-//___________________________________________________________
-void ManageBoard::printObjects(sf::RenderWindow& window)const
+
+//_____________________________________________________________________
+bool ManageBoard::handleClickOnBoard(sf::Vector2f& buttonPressedOnBoard)
 {
-	m_king.showShape(window);
-	m_mage.showShape(window);
-	m_warrior.showShape(window);
-	m_thief.showShape(window);
-	m_wall.showShape(window);
-	m_crown.showShape(window);
-	m_fire.showShape(window);
-	m_gate.showShape(window);
-	m_key.showShape(window);
-	m_monster.showShape(window);
-	m_teleport.showShape(window);
-	m_erase.showShape(window);
-	m_newBoard.showShape(window);
-	m_saveBoard.showShape(window);
+	sf::RectangleShape board({ 60, 60 });
+	for (int row = 0; row < m_length; row++)
+	{
+		for (int col = 0; col < m_width; col++)
+		{
+			board.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
+				SIDE_LENGTH + (CELL + SPACE) * row));
+			if (board.getGlobalBounds().contains(buttonPressedOnBoard))
+			{
+				buttonPressedOnBoard = sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
+					SIDE_LENGTH + (CELL + SPACE) * row);
+				return true;
+			}
+		}
+	}
+	return false;
 }

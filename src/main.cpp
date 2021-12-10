@@ -1,11 +1,11 @@
 #include <SFML/Graphics.hpp>
 
 #include <iostream>
-#include "ManageBoard.h"
+#include "ManageWindow.h"
 
 int main()
 {
-	auto game = ManageBoard();
+	auto game = ManageWindow();
 	game.runBoard();
 
 	return EXIT_SUCCESS;
