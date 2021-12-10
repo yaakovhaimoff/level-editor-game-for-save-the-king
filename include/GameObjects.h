@@ -13,6 +13,8 @@ public:
     void showShape(sf::RenderWindow&)const;
     void setLocation(sf::Vector2f&);
     int getAmountOfLocation()const;
+    bool boardObjectExists(sf::Vector2f&);
+
 
 
 private:

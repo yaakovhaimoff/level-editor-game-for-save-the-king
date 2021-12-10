@@ -18,6 +18,7 @@ public:
 	void printWindow(sf::RenderWindow&)const;
 	void printObjects(sf::RenderWindow&)const;
 	void addObject(int, sf::Vector2f&);
+	bool checkIfObjectIsOnBoard(sf::Vector2f&);
 
 private:
 	void getBoardSizeFromUser();

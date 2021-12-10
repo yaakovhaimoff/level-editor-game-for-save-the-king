@@ -14,7 +14,6 @@ public:
 	bool handleClickInMenuBar(const sf::Vector2f&, int&);
 	bool handleClickOnBoard(sf::Vector2f&);
 
-
 private:
 	int m_length;
 	int m_width;

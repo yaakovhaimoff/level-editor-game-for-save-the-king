@@ -50,11 +50,11 @@ void ManageWindow::getBoardSizeFromUser()
 	std::cin >> rows >> cols;
 	m_board = ManageBoard(rows, cols);
 }
-//_________________________________________
+//_________________________________________________________________________
 void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 {
 	sf::Vector2f boardLocation;
-	if (m_board.handleClickOnBoard(locationPressed))
+	if (m_board.handleClickOnBoard(locationPressed) && !checkIfObjectIsOnBoard(locationPressed))
 	{
 		switch (menuObject)
 		{
@@ -111,6 +111,34 @@ void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 			break;
 		}
 	}
+}
+//___________________________________________________________________________
+bool ManageWindow::checkIfObjectIsOnBoard(sf::Vector2f& buttonPressedOnBoard)
+{
+	if (m_king.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_mage.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_warrior.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_thief.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_wall.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_crown.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_fire.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_gate.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_key.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_monster.boardObjectExists(buttonPressedOnBoard))
+		return true;
+	if (m_teleport.boardObjectExists(buttonPressedOnBoard))
+		return true;
+
+	return false;
 }
 //__________________________________________________________
 void ManageWindow::printWindow(sf::RenderWindow& window)const

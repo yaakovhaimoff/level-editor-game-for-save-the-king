@@ -12,7 +12,7 @@ void GameObjects::showShape(sf::RenderWindow& window)const
 
 	for (int row = 0; row < m_locations.size(); row++)
 	{
-		
+
 		sprite.setPosition(m_locations[row]);
 		sprite.setTexture(m_textureFile);
 		window.draw(sprite);
@@ -25,4 +25,12 @@ void GameObjects::setLocation(sf::Vector2f& location)
 int GameObjects::getAmountOfLocation()const
 {
 	return m_locations.size();
+}
+bool GameObjects::boardObjectExists(sf::Vector2f& buttonPressedOnBoard)
+{
+	for (int row = 1; row < m_locations.size(); row++)
+		if (m_locations[row] == buttonPressedOnBoard)
+			return true;
+
+	return false;
 }
