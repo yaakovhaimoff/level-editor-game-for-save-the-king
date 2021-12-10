@@ -17,6 +17,11 @@ int ManageBoard::getBoardWidth()const
 //________________________________________________________________
 void ManageBoard::printDefaultBoard(sf::RenderWindow& window) const
 {
+	auto backGroungRect = sf::RectangleShape({ (float)63.3 * m_length, (float)63.3 * m_width });
+	backGroungRect.setFillColor(sf::Color::Black);
+	backGroungRect.setPosition(sf::Vector2f((float)(SIDE_WIDTH-3), (float)(SIDE_LENGTH-3)));
+	window.draw(backGroungRect);
+
 	auto objectShape = sf::RectangleShape({ 60, 60 });
 	objectShape.setFillColor(BOARD_COLOR);
 
@@ -24,8 +29,8 @@ void ManageBoard::printDefaultBoard(sf::RenderWindow& window) const
 	{
 		for (int col = 0; col < m_width; col++)
 		{
-			objectShape.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
-				SIDE_LENGTH + (CELL + SPACE) * row));
+			objectShape.setPosition(sf::Vector2f((float)(SIDE_WIDTH + (CELL + SPACE) * col),
+				(float)(SIDE_LENGTH + (CELL + SPACE) * row)));
 			window.draw(objectShape);
 		}
 	}
@@ -33,23 +38,27 @@ void ManageBoard::printDefaultBoard(sf::RenderWindow& window) const
 //_____________________________________________________________
 void ManageBoard::printMenuBoard(sf::RenderWindow& window) const
 {
+	auto backGroungRect = sf::RectangleShape({ (float)63.5* MenuBar, (float)66 });
+	backGroungRect.setFillColor(sf::Color::Black);
+	window.draw(backGroungRect);
+
 	auto menuButton = sf::RectangleShape({ 60, 60 });
 	menuButton.setFillColor(MENU_COLOR);
 
 	for (int row = 0; row < MenuBar; row++)
 	{
-		menuButton.setPosition(sf::Vector2f((CELL + SPACE) * row, SPACE));
+		menuButton.setPosition(sf::Vector2f((float)((CELL + SPACE) * row), (float)SPACE));
 		window.draw(menuButton);
 	}
 }
 //____________________________________________________________________________________________
 bool ManageBoard::handleClickInMenuBar(const sf::Vector2f& buttonPressedOnBoard, int& location)
 {
-	sf::RectangleShape menuBar({60, 60});
+	sf::RectangleShape menuBar({ 60, 60 });
 	for (int row = 0; row < MenuBar; row++)
 	{
-		menuBar.setPosition(sf::Vector2f((CELL + SPACE) * row, SPACE));
-		
+		menuBar.setPosition(sf::Vector2f((float)(CELL + SPACE) * row, (float)SPACE));
+
 		if (menuBar.getGlobalBounds().contains(buttonPressedOnBoard))
 		{
 			location = row;
@@ -68,12 +77,12 @@ bool ManageBoard::handleClickOnBoard(sf::Vector2f& buttonPressedOnBoard)
 	{
 		for (int col = 0; col < m_width; col++)
 		{
-			board.setPosition(sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
-				SIDE_LENGTH + (CELL + SPACE) * row));
+			board.setPosition(sf::Vector2f((float)(SIDE_WIDTH + (CELL + SPACE) * col),
+				(float)(SIDE_LENGTH + (CELL + SPACE) * row)));
 			if (board.getGlobalBounds().contains(buttonPressedOnBoard))
 			{
-				buttonPressedOnBoard = sf::Vector2f(SIDE_WIDTH + (CELL + SPACE) * col,
-					SIDE_LENGTH + (CELL + SPACE) * row);
+				buttonPressedOnBoard = sf::Vector2f((float)(SIDE_WIDTH + (CELL + SPACE) * col),
+					(float)(SIDE_LENGTH + (CELL + SPACE) * row));
 				return true;
 			}
 		}

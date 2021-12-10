@@ -3,7 +3,8 @@
 //________________________
 ManageWindow::ManageWindow()
 {
-	this->getBoardSizeFromUser();
+	if (!this->readSavedBoard())
+		this->getBoardSizeFromUser();
 }
 //______________________________________
 void ManageWindow::getBoardSizeFromUser()
@@ -65,11 +66,11 @@ void ManageWindow::checkButtonPressedOnMenu(int menuButton, sf::Vector2f& locati
 	case ERASE_BOARD_OBJECT:
 		if (m_board.handleClickOnBoard(location))
 			this->checkIfIsObjectOnBoard(ERASE_BOARD_OBJECT, location);
-			break;
+		break;
 
 	default:
 		this->addObject(menuButton, location);
-			break;
+		break;
 	}
 }
 //_________________________________________________________________________
@@ -133,7 +134,7 @@ void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 		}
 	}
 }
-//___________________________________________________________________________
+//___________________________________________________________________________________________
 bool ManageWindow::checkIfIsObjectOnBoard(int menuButton, sf::Vector2f& buttonPressedOnBoard)
 {
 	// if found the location in one of the objects, will not continue checking the other objects
@@ -231,6 +232,7 @@ void ManageWindow::saveBoard()
 		file << "\n";
 	}
 }
+//________________________________________________________________________________________
 void ManageWindow::intializeVectorToSaveBoard(std::vector<std::vector<char>>& boardToSave)
 {
 	int rows = m_board.getBoardLength();
@@ -242,5 +244,82 @@ void ManageWindow::intializeVectorToSaveBoard(std::vector<std::vector<char>>& bo
 		{
 			boardToSave[i][j] = ' ';
 		}
+	}
+}
+bool ManageWindow::readSavedBoard()
+{
+	std::ifstream savedFileBoard;
+	savedFileBoard.open("Board.txt");
+	if (!savedFileBoard.is_open())
+		std::cout << "No baord saved previously\n";
+	sf::Vector2f boardCharPosition;
+	int row = 0, col=0;
+	bool isFile = false;
+	while (savedFileBoard)
+	{
+		isFile = true;
+		std::string boardLine;
+		std::getline(savedFileBoard, boardLine);
+		if (boardLine.size() > col)
+			col = boardLine.size();
+		for (int i = 0; i < boardLine.size(); i++)
+		{
+			int c = boardLine[i];
+			boardCharPosition.x = (float)(SIDE_WIDTH + (CELL + SPACE) * i);
+			boardCharPosition.y = (float)(SIDE_LENGTH + (CELL + SPACE) * row);
+			this->addToBoardFromFile(c, boardCharPosition);
+		}
+		row++;
+	}
+	m_board = ManageBoard(row, col);
+	return isFile;
+}
+void ManageWindow::addToBoardFromFile(int c, sf::Vector2f location)
+{
+	switch (c)
+	{
+	case KING:
+		m_king.setLocation(location);
+		break;
+
+	case MAGE:
+		m_mage.setLocation(location);
+		break;
+
+	case WARRIOR:
+		m_warrior.setLocation(location);
+		break;
+
+	case THIEF:
+		m_thief.setLocation(location);
+		break;
+
+	case GATE_KEY:
+		m_key.setLocation(location);
+		break;
+
+	case FIRE:
+		m_fire.setLocation(location);
+		break;
+
+	case TELEPORT:
+		m_teleport.setLocation(location);
+		break;
+
+	case CROWN:
+		m_crown.setLocation(location);
+		break;
+
+	case MONSTER:
+		m_monster.setLocation(location);
+		break;
+
+	case GATE:
+		m_gate.setLocation(location);
+		break;
+
+	case WALL:
+		m_wall.setLocation(location);
+		break;
 	}
 }

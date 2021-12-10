@@ -1,4 +1,3 @@
-configure_file ("Board.txt" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("brickWall.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("crown.png" ${CMAKE_BINARY_DIR} COPYONLY)
 configure_file ("eraser.png" ${CMAKE_BINARY_DIR} COPYONLY)

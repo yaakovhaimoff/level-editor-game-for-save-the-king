@@ -3,6 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <string>
 #include <SFML/Graphics.hpp>
 
 #include "ManageBoard.h"
@@ -17,6 +18,8 @@ class ManageWindow
 public:
 	ManageWindow();
 	void runBoard();
+	bool readSavedBoard();
+	void addToBoardFromFile(int, sf::Vector2f);
 	void printWindow(sf::RenderWindow&)const;
 	void printObjects(sf::RenderWindow&)const;
 	void checkButtonPressedOnMenu(int, sf::Vector2f&);
