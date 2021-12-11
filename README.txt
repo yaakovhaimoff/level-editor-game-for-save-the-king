@@ -14,11 +14,20 @@ In case there's a board in the folder, the file will be displayes on the board
 as in the file, and he'll be able to continue on editing it if he'd like too.
 When the user chooses to save the board he has build, the board will be saved in a file named
 "Board.txt", which will be in the out folder.
+If the user wants to start building a board from the beginging he will press the newBoard icon
+and the board will be empty as started.
 
-files in the project:
+Folders in the project:
 include - where all the headers are stalled.
 src - where all the cpp are stalled, the class implementation are and the main.
 README.txt - where the explaing of the project is.
+Files in the project:
+GameObjects.h : the base class for all the objects
+PlayerObjects.h : where all the characters are.
+TileBoardObjects.h : where a the tiles are.
+BoardFeatures.h : where the board manage feature are, erase, newboard and save.
+ManageBoard.h : building the board and checking in it
+ManageWindow.h : where the project runs threw.
 
 In the project I made use with enheritance, the base class is GameObjects, which all the objects
 inherit her members and functionalities.

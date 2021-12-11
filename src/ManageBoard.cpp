@@ -14,6 +14,7 @@ int ManageBoard::getBoardWidth()const
 {
 	return m_width;
 }
+// printing the board layout, and the objects background
 //________________________________________________________________
 void ManageBoard::printDefaultBoard(sf::RenderWindow& window) const
 {
@@ -51,6 +52,7 @@ void ManageBoard::printMenuBoard(sf::RenderWindow& window) const
 		window.draw(menuButton);
 	}
 }
+// deciding if the menu bar was pressed on, and if yes which one
 //____________________________________________________________________________________________
 bool ManageBoard::handleClickInMenuBar(const sf::Vector2f& buttonPressedOnBoard, int& location)
 {
@@ -68,7 +70,7 @@ bool ManageBoard::handleClickInMenuBar(const sf::Vector2f& buttonPressedOnBoard,
 	location = DO_NOTHING;
 	return false;
 }
-
+// checking if the user click was in the board area
 //_____________________________________________________________________
 bool ManageBoard::handleClickOnBoard(sf::Vector2f& buttonPressedOnBoard)
 {

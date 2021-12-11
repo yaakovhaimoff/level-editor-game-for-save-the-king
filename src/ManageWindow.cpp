@@ -140,10 +140,6 @@ void ManageWindow::checkButtonPressedOnMenu(sf::RenderWindow& window, int menuBu
 	{
 	case NEW_BOARD_OBJECT:
 		this->eraseBoard();
-		/*window.clear(BACKGROUND_COLOR);
-		this->printWindow(window);
-		window.display();
-		this->getBoardSizeFromUser();*/
 		break;
 
 	case SAVE_BOARD_OBJECT:
@@ -168,6 +164,7 @@ void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 		switch (menuObject)
 		{
 		case KING_BOARD_OBJECT:
+			// if a character was places once, will not be place more new ones
 			if (m_king.getAmountOfLocation() < PLAYER_EXIST)
 				m_king.setLocation(locationPressed);
 			break;
@@ -221,6 +218,7 @@ void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 		}
 	}
 }
+// checking if the location is saved in one of the objects
 //___________________________________________________________________________________________
 bool ManageWindow::checkIfObjectIsOnBoard(int menuButton, sf::Vector2f& buttonPressedOnBoard)
 {
@@ -250,6 +248,7 @@ bool ManageWindow::checkIfObjectIsOnBoard(int menuButton, sf::Vector2f& buttonPr
 
 	return false;
 }
+// erasing all objects locations to start a new board
 //______________________________
 void ManageWindow::eraseBoard()
 {
@@ -297,7 +296,7 @@ void ManageWindow::saveBoard()
 	file.open("Board.txt");
 	std::vector<std::vector<char>> boardToSave;
 	this->intializeVectorToSaveBoard(boardToSave);
-
+	// saving all objects keys in the right location in the vector
 	m_king.saveBoardObjectsToVector(boardToSave);
 	m_mage.saveBoardObjectsToVector(boardToSave);
 	m_warrior.saveBoardObjectsToVector(boardToSave);
@@ -309,7 +308,7 @@ void ManageWindow::saveBoard()
 	m_key.saveBoardObjectsToVector(boardToSave);
 	m_monster.saveBoardObjectsToVector(boardToSave);
 	m_teleport.saveBoardObjectsToVector(boardToSave);
-
+	// sending the vector that was what user build in the board to be saved in "Board.txt"
 	for (int i = 0; i < m_board.getBoardLength(); i++)
 	{
 		for (int j = 0; j < m_board.getBoardWidth(); j++)
@@ -333,6 +332,7 @@ void ManageWindow::intializeVectorToSaveBoard(std::vector<std::vector<char>>& bo
 		}
 	}
 }
+// if there a saved board will translate it to the graphic board
 //_________________________________
 bool ManageWindow::readSavedBoard()
 {
