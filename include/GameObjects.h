@@ -12,6 +12,7 @@ class GameObjects
 public:
     GameObjects(std::string, int, int, char);
     void showShape(sf::RenderWindow&)const;
+    void showOneObject(sf::RenderWindow&, sf::Vector2f&);
     void setLocation(sf::Vector2f&);
     int getAmountOfLocation()const;
     bool boardObjectExists(int, sf::Vector2f&);

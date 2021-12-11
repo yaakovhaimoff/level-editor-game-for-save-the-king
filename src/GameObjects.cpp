@@ -10,21 +10,21 @@ GameObjects::GameObjects(std::string fileName, int x, int y, char key)
 //________________________________________________________
 void GameObjects::showShape(sf::RenderWindow& window)const
 {
-	auto backGroungRect = sf::RectangleShape({ (float)60, (float)60 });
-	backGroungRect.setFillColor(sf::Color::Blue);
 	sf::Sprite sprite;
-
 	for (int row = 0; row < m_locations.size(); row++)
 	{
-		if (row != 0)
-		{
-			backGroungRect.setPosition(m_locations[row]);
-			//window.draw(backGroungRect);
-		}
 		sprite.setPosition(m_locations[row]);
 		sprite.setTexture(m_textureFile);
 		window.draw(sprite);
 	}
+}
+//_______________________________________________________________________________
+void GameObjects::showOneObject(sf::RenderWindow& window, sf::Vector2f& location)
+{
+	sf::Sprite sprite;
+	sprite.setPosition(location);
+	sprite.setTexture(m_textureFile);
+	window.draw(sprite);
 }
 //___________________________________________________
 void GameObjects::setLocation(sf::Vector2f& location)

@@ -10,8 +10,10 @@ ManageWindow::ManageWindow()
 void ManageWindow::getBoardSizeFromUser()
 {
 	int rows, cols;
-	std::cout << "Enter the size for the borad,\n";
-	std::cout << "rows and cols\n";
+	std::cout << "Welcome to Save The King!\n\n";
+	std::cout << "In order to edit your level, Enter\n\n";
+	std::cout << "the number of rows and cols you would like to have\n\n";
+	std::cout << "in your board:\n\n";
 	std::cin >> rows >> cols;
 	m_board = ManageBoard(rows, cols);
 }
@@ -48,34 +50,87 @@ void ManageWindow::runBoard()
 			}
 			case sf::Event::MouseMoved:
 			{
-				handleMouseMovement(event, window);
+				handleMouseMovement(menuButton, event, window);
 				break;
 			}
 			}
 		}
 	}
 }
-//________________________________________________________________________________
-void ManageWindow::handleMouseMovement(sf::Event& event, sf::RenderWindow& window)
+//________________________________________________________________________________________________
+void ManageWindow::handleMouseMovement(int menuButton, sf::Event& event, sf::RenderWindow& window)
 {
 	auto move = sf::Vector2f((float)event.mouseMove.x, (float)event.mouseMove.y);
-	auto backGroungRect = sf::RectangleShape({ (float)60, (float)60 });
 	// checking if mouse movement is in board area
 	if (m_board.handleClickOnBoard(move))
 	{
-		if (this->checkIfIsObjectOnBoard(DO_NOTHING, move))
-		{
-			backGroungRect.setFillColor(sf::Color::Red);
-		}
-		else
-		{
-			backGroungRect.setFillColor(sf::Color::Blue);
-		}
-		backGroungRect.setPosition(move);
 		window.clear(BACKGROUND_COLOR);
 		this->printWindow(window);
-		window.draw(backGroungRect);
-		window.display();
+		// when moving an object
+		if (!this->checkIfObjectIsOnBoard(DO_NOTHING, move))
+		{
+			this->printObjectMovement(menuButton, window, move);
+		}
+		// when pressed on erase, highlights the object which is pointed by the mouse
+		else if (m_board.handleClickOnBoard(move) && this->checkIfObjectIsOnBoard(DO_NOTHING, move)
+			&& menuButton == ERASE_BOARD_OBJECT)
+		{
+			auto deleteSignal = sf::RectangleShape({ 60, 60 });
+			deleteSignal.setPosition(move);
+			deleteSignal.setFillColor(sf::Color::Red);
+			window.draw(deleteSignal);
+		}
+			window.display();
+	}
+}
+//______________________________________________________________________________________________________
+void ManageWindow::printObjectMovement(int menuButton, sf::RenderWindow& window, sf::Vector2f& location)
+{
+	switch (menuButton)
+	{
+	case KING_BOARD_OBJECT:
+		m_king.showOneObject(window, location);
+		break;
+
+	case MAGE_BOARD_OBJECT:
+		m_mage.showOneObject(window, location);
+		break;
+
+	case WARRIOR_BOARD_OBJECT:
+		m_warrior.showOneObject(window, location);
+		break;
+
+	case THIEF_BOARD_OBJECT:
+		m_thief.showOneObject(window, location);
+		break;
+
+	case WALL_BOARD_OBJECT:
+		m_wall.showOneObject(window, location);
+		break;
+
+	case CROWN_BOARD_OBJECT:
+		m_crown.showOneObject(window, location);
+		break;
+
+	case FIRE_BOARD_OBJECT:
+		m_fire.showOneObject(window, location);
+		break;
+
+	case GATE_BOARD_OBJECT:
+		m_gate.showOneObject(window, location);
+		break;
+
+	case GATE_KEY_BOARD_OBJECT:
+		m_key.showOneObject(window, location);
+		break;
+
+	case MONSTER_BOARD_OBJECT:
+		m_monster.showOneObject(window, location);
+		break;
+
+	case TELEPORT_BOARD_OBJECT:
+		m_teleport.showOneObject(window, location);
+		break;
 	}
 }
 //___________________________________________________________________________________________________________
@@ -97,7 +152,7 @@ void ManageWindow::checkButtonPressedOnMenu(sf::RenderWindow& window, int menuBu
 
 	case ERASE_BOARD_OBJECT:
 		if (m_board.handleClickOnBoard(location))
-			this->checkIfIsObjectOnBoard(ERASE_BOARD_OBJECT, location);
+			this->checkIfObjectIsOnBoard(ERASE_BOARD_OBJECT, location);
 		break;
 
 	default:
@@ -108,7 +163,7 @@ void ManageWindow::checkButtonPressedOnMenu(sf::RenderWindow& window, int menuBu
 //_________________________________________________________________________
 void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 {
-	if (m_board.handleClickOnBoard(locationPressed) && !this->checkIfIsObjectOnBoard(menuObject, locationPressed))
+	if (m_board.handleClickOnBoard(locationPressed) && !this->checkIfObjectIsOnBoard(menuObject, locationPressed))
 	{
 		switch (menuObject)
 		{
@@ -167,7 +222,7 @@ void ManageWindow::addObject(int menuObject, sf::Vector2f& locationPressed)
 	}
 }
 //___________________________________________________________________________________________
-bool ManageWindow::checkIfIsObjectOnBoard(int menuButton, sf::Vector2f& buttonPressedOnBoard)
+bool ManageWindow::checkIfObjectIsOnBoard(int menuButton, sf::Vector2f& buttonPressedOnBoard)
 {
 	// if found the location in one of the objects, will not continue checking the other objects
 	if (m_king.boardObjectExists(menuButton, buttonPressedOnBoard))
@@ -284,7 +339,7 @@ bool ManageWindow::readSavedBoard()
 	std::ifstream savedFileBoard;
 	savedFileBoard.open("Board.txt");
 	if (!savedFileBoard.is_open())
-		std::cout << "No baord saved previously\n";
+		std::cout << "No baord saved previously\n\n";
 	sf::Vector2f boardCharPosition;
 	int row = 0, col = 0;
 	bool isFile = false;

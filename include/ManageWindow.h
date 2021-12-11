@@ -18,13 +18,14 @@ class ManageWindow
 public:
 	ManageWindow();
 	void runBoard();
-	void handleMouseMovement(sf::Event&, sf::RenderWindow&);
+	void handleMouseMovement(int, sf::Event&, sf::RenderWindow&);
+	void printObjectMovement(int, sf::RenderWindow&, sf::Vector2f&);
 	bool readSavedBoard();
 	void addToBoardFromFile(int, sf::Vector2f);
 	void printWindow(sf::RenderWindow&)const;
 	void printObjects(sf::RenderWindow&)const;
 	void checkButtonPressedOnMenu(sf::RenderWindow&, int, sf::Vector2f&);
-	bool checkIfIsObjectOnBoard(int, sf::Vector2f&);
+	bool checkIfObjectIsOnBoard(int, sf::Vector2f&);
 	void addObject(int, sf::Vector2f&);
 	void eraseBoard();
 	void saveBoard();
