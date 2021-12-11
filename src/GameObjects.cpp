@@ -10,11 +10,17 @@ GameObjects::GameObjects(std::string fileName, int x, int y, char key)
 //________________________________________________________
 void GameObjects::showShape(sf::RenderWindow& window)const
 {
+	auto backGroungRect = sf::RectangleShape({ (float)60, (float)60 });
+	backGroungRect.setFillColor(sf::Color::Blue);
 	sf::Sprite sprite;
 
 	for (int row = 0; row < m_locations.size(); row++)
 	{
-
+		if (row != 0)
+		{
+			backGroungRect.setPosition(m_locations[row]);
+			//window.draw(backGroungRect);
+		}
 		sprite.setPosition(m_locations[row]);
 		sprite.setTexture(m_textureFile);
 		window.draw(sprite);
@@ -40,7 +46,7 @@ bool GameObjects::boardObjectExists(int menuButton, sf::Vector2f& buttonPressedO
 			if (menuButton == ERASE_BOARD_OBJECT)
 				m_locations.erase(m_locations.begin() + row);
 
-				return true;
+			return true;
 		}
 	}
 	return false;
@@ -70,8 +76,8 @@ void GameObjects::saveBoardObjectsToVector(std::vector<std::vector<char>>& vecto
 	int i, j;
 	for (int row = 1; row < m_locations.size(); row++)
 	{
-		i = (m_locations[row].y-SIDE_WIDTH) / (CELL + SPACE);
-		j = (m_locations[row].x-SIDE_LENGTH) / (CELL + SPACE);
+		i = (m_locations[row].y - SIDE_WIDTH) / (CELL + SPACE);
+		j = (m_locations[row].x - SIDE_LENGTH) / (CELL + SPACE);
 		vectorToSave[i][j] = m_key;
 	}
 }

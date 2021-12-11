@@ -47,7 +47,7 @@ void ManageBoard::printMenuBoard(sf::RenderWindow& window) const
 
 	for (int row = 0; row < MenuBar; row++)
 	{
-		menuButton.setPosition(sf::Vector2f((float)((CELL + SPACE) * row), (float)SPACE));
+		menuButton.setPosition(sf::Vector2f((float)((CELL + SPACE) * row) +1, (float)SPACE));
 		window.draw(menuButton);
 	}
 }

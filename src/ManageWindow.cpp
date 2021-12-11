@@ -19,8 +19,8 @@ void ManageWindow::getBoardSizeFromUser()
 void ManageWindow::runBoard()
 {
 	int buttonPressed, menuButton = DO_NOTHING;
-	auto window = sf::RenderWindow(sf::VideoMode(881, 900), "Save the king");
-
+	auto window = sf::RenderWindow(sf::VideoMode(882, 900), "SAVE THE KING");
+	int row = 0;
 	while (window.isOpen())
 	{
 		window.clear(BACKGROUND_COLOR);
@@ -43,20 +43,52 @@ void ManageWindow::runBoard()
 				{
 					menuButton = buttonPressed;
 				}
-				this->checkButtonPressedOnMenu(menuButton, location);
+				this->checkButtonPressedOnMenu(window, menuButton, location);
+				break;
+			}
+			case sf::Event::MouseMoved:
+			{
+				handleMouseMovement(event, window);
 				break;
 			}
 			}
 		}
 	}
 }
-//_________________________________________________________________________________
-void ManageWindow::checkButtonPressedOnMenu(int menuButton, sf::Vector2f& location)
+//________________________________________________________________________________
+void ManageWindow::handleMouseMovement(sf::Event& event, sf::RenderWindow& window)
+{
+	auto move = sf::Vector2f((float)event.mouseMove.x, (float)event.mouseMove.y);
+	auto backGroungRect = sf::RectangleShape({ (float)60, (float)60 });
+	// checking if mouse movement is in board area
+	if (m_board.handleClickOnBoard(move))
+	{
+		if (this->checkIfIsObjectOnBoard(DO_NOTHING, move))
+		{
+			backGroungRect.setFillColor(sf::Color::Red);
+		}
+		else
+		{
+			backGroungRect.setFillColor(sf::Color::Blue);
+		}
+		backGroungRect.setPosition(move);
+		window.clear(BACKGROUND_COLOR);
+		this->printWindow(window);
+		window.draw(backGroungRect);
+		window.display();
+	}
+}
+//___________________________________________________________________________________________________________
+void ManageWindow::checkButtonPressedOnMenu(sf::RenderWindow& window, int menuButton, sf::Vector2f& location)
 {
 	switch (menuButton)
 	{
 	case NEW_BOARD_OBJECT:
 		this->eraseBoard();
+		/*window.clear(BACKGROUND_COLOR);
+		this->printWindow(window);
+		window.display();
+		this->getBoardSizeFromUser();*/
 		break;
 
 	case SAVE_BOARD_OBJECT:
@@ -246,6 +278,7 @@ void ManageWindow::intializeVectorToSaveBoard(std::vector<std::vector<char>>& bo
 		}
 	}
 }
+//_________________________________
 bool ManageWindow::readSavedBoard()
 {
 	std::ifstream savedFileBoard;
@@ -253,7 +286,7 @@ bool ManageWindow::readSavedBoard()
 	if (!savedFileBoard.is_open())
 		std::cout << "No baord saved previously\n";
 	sf::Vector2f boardCharPosition;
-	int row = 0, col=0;
+	int row = 0, col = 0;
 	bool isFile = false;
 	while (savedFileBoard)
 	{
@@ -274,6 +307,7 @@ bool ManageWindow::readSavedBoard()
 	m_board = ManageBoard(row, col);
 	return isFile;
 }
+//_________________________________________________________________
 void ManageWindow::addToBoardFromFile(int c, sf::Vector2f location)
 {
 	switch (c)
